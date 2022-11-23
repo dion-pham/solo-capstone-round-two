@@ -9,7 +9,8 @@ def seed_addresses():
         city = 'Los Angeles',
         state = 'California',
         country = 'USA',
-        zip_code = 90046
+        zip_code = 90046,
+        phone = '424-608-4522'
     )
 
     db.session.add(demo_address_1)

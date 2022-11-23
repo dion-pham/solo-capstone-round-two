@@ -27,7 +27,7 @@ class Product(db.Model):
 
     purchases = db.relationship('Purchase',
                             secondary = purchase_product,
-                            back_populates = 'purchases',
+                            back_populates = 'products',
                             lazy=False
     )
 

@@ -18,7 +18,9 @@ class Purchase(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    total_price = db.Column(db.Float(10))
+    pretax_total_price = db.Column(db.Float(10))
+    shipping_instructions = db.Column(db.String(100))
+    # handle with aggregate function for total price?
 
     user_purchases = db.relationship('User', back_populates='purchase_users')
     products = db.relationship('Product',
@@ -31,8 +33,8 @@ class Purchase(db.Model):
         return {
             'id': self.id,
             'user_id': self.user_id,
-            'total_price': self.total_price,
-            # is this needed in the backend??
+            'pretax_total_price': self.pretax_total_price,
+            'shipping_instructions': self.shipping_instructions,
             'products': [ind_product.to_dict() for ind_product in self.products]
-
+            # iterate through products purchased, then total up the price to display in the frontend
         }
