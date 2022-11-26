@@ -34,8 +34,8 @@ def upgrade():
     sa.Column('img_url3', sa.String(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == 'production':
-        op.execute(f"ALTER TABLE products SET SCHEMA {SCHEMA};")
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -46,8 +46,8 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email')
     )
-    if environment == 'production':
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 
     op.create_table('addresses',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -62,8 +62,8 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == 'production':
-        op.execute(f"ALTER TABLE addresses SET SCHEMA {SCHEMA};")
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 
 
     op.create_table('purchases',
@@ -74,8 +74,8 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
 
-    if environment == 'production':
-        op.execute(f"ALTER TABLE purchases SET SCHEMA {SCHEMA};")
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 
     op.create_table('purchase_product',
     sa.Column('product_id', sa.Integer(), nullable=True),
@@ -84,8 +84,8 @@ def upgrade():
     sa.ForeignKeyConstraint(['purchase_id'], ['purchases.id'], )
     )
 
-    if environment == 'production':
-        op.execute(f"ALTER TABLE purchase_product SET SCHEMA {SCHEMA};")
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 
     # ### end Alembic commands ###
 
