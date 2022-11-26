@@ -27,6 +27,7 @@ def fetch_user_purchases(id):
     return parsed_user_purchases_dict
 
 # do the same pretax total iteration above for the get route below
+
 # fetch a purchase by its individual id
 @purchase_routes.route('/<int:id>', methods = ['GET'])
 @login_required
