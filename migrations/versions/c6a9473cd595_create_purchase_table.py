@@ -1,20 +1,19 @@
-"""create all table
+"""create purchase table
 
-Revision ID: 18e3b17c607d
+Revision ID: c6a9473cd595
 Revises:
-Create Date: 2022-11-23 09:11:55.218003
+Create Date: 2022-11-28 09:05:59.534422
 
 """
 from alembic import op
 import sqlalchemy as sa
 
-
 import os
-environment = os.getenv('FLASK_ENV')
+environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
-revision = '18e3b17c607d'
+revision = 'c6a9473cd595'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -36,7 +35,6 @@ def upgrade():
     )
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
-
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('first_name', sa.String(length=40), nullable=False),
@@ -48,7 +46,6 @@ def upgrade():
     )
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
-
     op.create_table('addresses',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -64,29 +61,24 @@ def upgrade():
     )
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
-
-
     op.create_table('purchases',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('pretax_total_price', sa.Float(precision=10), nullable=True),
+    sa.Column('shipping_instructions', sa.String(length=100), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
-
     op.create_table('purchase_product',
     sa.Column('product_id', sa.Integer(), nullable=True),
     sa.Column('purchase_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['product_id'], ['products.id'], ),
     sa.ForeignKeyConstraint(['purchase_id'], ['purchases.id'], )
     )
-
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
-
     # ### end Alembic commands ###
 
 
