@@ -1,9 +1,17 @@
 // constants
+const ADD_USER_PURCHASE = 'purchase/addUserPurchase'
 const LOAD_ALL_USER_PURCHASES = 'purchase/loadAllUserPurchases'
 const EDIT_USER_PURCHASE = 'purchase/editUserPurchase'
 const DELETE_USER_PURCHASE = 'purchase/deleteUserPurchase'
 
 // actions
+export const actionAddUserPurchase = (data) => {
+    return {
+        type: ADD_USER_PURCHASE,
+        purchase: data
+    }
+}
+
 export const getAllUserPurchases = (data) => {
     return {
         type:LOAD_ALL_USER_PURCHASES,
@@ -26,6 +34,20 @@ export const deleteUserPurchase = (id) => {
 }
 
 // thunks
+export const addUserPurchase = (newPurchaseData) => async(dispatch) => {
+    const response = await fetch("/purchases", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newPurchaseData),
+    });
+
+    if (response.ok) {
+        const data = await response.json()
+        dispatch(actionAddUserPurchase(data))
+        return data
+    }
+}
+
 export const fetchAllUserPurchases = (id) => async(dispatch) => {
     const response = await fetch(`/api/purchases/user/${id}`)
 
@@ -66,6 +88,8 @@ const initialState = {userPurchases: {}}
 const purchaseReducer = (state=initialState, action) => {
     let purchaseStateObj = {...state}
     switch (action.type) {
+        case ADD_USER_PURCHASE:
+            purchaseStateObj.userPurchases[action.purchase.id] = action.purchase
         case LOAD_ALL_USER_PURCHASES:
             purchaseStateObj.userPurchases = action.purchases
             return purchaseStateObj

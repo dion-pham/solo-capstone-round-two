@@ -9,8 +9,6 @@ const AddToCartForm = ({targetProduct}) => {
     const sessionUser = useSelector(state => state.session.user)
 
     const [size, setSize] = useState('')
-
-
     if (!sessionUser) return <Redirect to="/" />;
 
     const handleSubmit = async (e) => {
@@ -92,18 +90,11 @@ const AddToCartForm = ({targetProduct}) => {
                 onClick={handleSubmit}
                 >
                     ADD TO CART
-                    {/* on submit, add this to local storage */}
                 </button>
             </div>
             </form>
         </div>
     )
-
-    // when 'add to cart' is clicked, then you put those items in local storage
-    // when you go to 'cart' page, pull those items from local storage
-    // when you click on check out on the cart page, a new instance of purchase is created
-        // along with purchase_product instance for each item in the cart. these items are then
-        // appended to that purchase
 }
 
 export default AddToCartForm

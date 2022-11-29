@@ -1,12 +1,21 @@
 from flask import Blueprint, jsonify, request
 from app.models import User, db
 from app.models.purchase import Purchase
+from app.models.purchase_product import PurchaseProduct
+from app.forms.purchase_form import PurchaseForm
 from flask_login import current_user, login_required
 
 purchase_routes = Blueprint('purchase', __name__)
 
-# creating instance of purchase will be done by cart
-
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
 
 # fetch a user's purchases by user id
 @purchase_routes.route('/user/<int:id>', methods = ['GET'])
@@ -36,8 +45,43 @@ def fetch_single_purchase(id):
     parsed_user_purchases_dict = {}
     for purchase in user_purchases:
         parsed_user_purchases_dict[purchase.id] = purchase.to_dict()
-    print(parsed_user_purchases_dict,'@@@@@@@@@@@@@@@')
     return parsed_user_purchases_dict
+
+
+# creating instance of purchase will be done by cart
+@purchase_routes.route('', methods=['POST'])
+@login_required
+def create_purchase():
+    form = PurchaseForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        purchase = Purchase(
+            user_id = form.data['user_id'],
+            pretax_total_price = form.data['pretax_total_price'],
+            shipping_instructions = form.data['shipping_instructions']
+        )
+    db.session.add(purchase)
+    db.session.commit()
+
+    purchase_join = request.json['purchase_join']
+    # how to test in postman??
+    for item in purchase_join:
+        new_item = PurchaseProduct(
+            product_id = item.id,
+            purchase_id = purchase.id,
+            quantity = item.quantity,
+            size = item.size
+                )
+        db.session.add(new_item)
+    db.session.commit()
+
+    # return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    return purchase.to_dict()
+
+
+
+
+# append the purchaseproduct instances to this as well
 
 #edit a purchases shipping instructions
 @purchase_routes.route('/<int:id>', methods = ['PUT'])

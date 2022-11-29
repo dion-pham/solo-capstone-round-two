@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import cartReducer, { ADD_TO_CART, deleteFromCart } from "../../store/cart";
+import cartReducer, { actionAddToCart, deleteFromCart } from "../../store/cart";
 
 
 const Cart = () => {
@@ -20,10 +20,7 @@ const Cart = () => {
 
         localStorage.setItem('cart', JSON.stringify(cart))
 
-        dispatch({
-            type: ADD_TO_CART,
-            payload: cart
-        })
+        dispatch(actionAddToCart(cart))
     }
 
     let cartRender;

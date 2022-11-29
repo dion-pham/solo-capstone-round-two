@@ -1,8 +1,25 @@
+import AddToCartForm from "../components/ProductAddToCartForm"
+
 // constants
 export const ADD_TO_CART = 'cart/addToCart'
 export const DELETE_FROM_CART = 'cart/deleteFromCart'
 
 // action
+export const actionAddToCart = (data) => {
+    return {
+        type: ADD_TO_CART,
+        payload: data
+    }
+}
+
+export const actionDeleteFromCart = (data) => {
+    return {
+        type: DELETE_FROM_CART,
+        payload: data
+    }
+}
+
+// thunks
 export const addToCart = product => async(dispatch) => {
 
     const cart = localStorage.getItem('cart') ?
@@ -18,10 +35,7 @@ export const addToCart = product => async(dispatch) => {
         }
         cart.push(addedItem)
         localStorage.setItem('cart', JSON.stringify(cart))
-        dispatch({
-            type: ADD_TO_CART,
-            payload: cart
-        })
+        dispatch(actionAddToCart(cart))
     }
 }
 
@@ -32,13 +46,9 @@ export const deleteFromCart = product => async(dispatch) => {
     const newCart = cart.filter(item => item.id !== product.id)
     localStorage.setItem('cart', JSON.stringify(newCart))
 
-    dispatch({
-        type: DELETE_FROM_CART,
-        payload: newCart
-    })
+    dispatch(actionDeleteFromCart(newCart))
 }
 
-// thunks
 
 // reducer
 const initialState={cart:[]}
