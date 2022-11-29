@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import cartReducer, { ADD_TO_CART } from "../../store/cart";
+import cartReducer, { ADD_TO_CART, deleteFromCart } from "../../store/cart";
+
 
 const Cart = () => {
     const {cart} = useSelector(state=> state.cart)
@@ -34,7 +35,12 @@ const Cart = () => {
         <div>
             <div>
                 {product.name}
-                {product.size}
+                Size: {product.size}
+                <button
+                onClick={()=> dispatch(deleteFromCart(product))}
+                >
+                    Remove
+                </button>
             </div>
             <div>
                 <h2>Price</h2>
@@ -66,21 +72,29 @@ const Cart = () => {
             Subtotal
             ${cart.reduce((sum, product) => sum + (product.quantity*product.price), 0)}
         </h1>
+        <button>
+            Check Out
+        </button>
     </div>
     )
-    : cartSubtotal = (<h2>Purchase something</h2>)
+    : cartSubtotal = (
+    <div>
+        <h2>Your cart is currently empty.</h2>
+        <h2>Continue browsing.</h2>
+    </div>
+    )
 
 
 
     return (
         <div>
+            <h1>Shopping Cart</h1>
             <div>
                 {cartRender}
             </div>
             <div>
                 {cartSubtotal}
             </div>
-
         </div>
     )
 }

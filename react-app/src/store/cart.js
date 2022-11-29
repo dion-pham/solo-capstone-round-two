@@ -1,5 +1,6 @@
 // constants
 export const ADD_TO_CART = 'cart/addToCart'
+export const DELETE_FROM_CART = 'cart/deleteFromCart'
 
 // action
 export const addToCart = product => async(dispatch) => {
@@ -24,6 +25,19 @@ export const addToCart = product => async(dispatch) => {
     }
 }
 
+export const deleteFromCart = product => async(dispatch) => {
+    const cart = localStorage.getItem('cart') ?
+    JSON.parse(localStorage.getItem('cart')) : []
+
+    const newCart = cart.filter(item => item.id !== product.id)
+    localStorage.setItem('cart', JSON.stringify(newCart))
+
+    dispatch({
+        type: DELETE_FROM_CART,
+        payload: newCart
+    })
+}
+
 // thunks
 
 // reducer
@@ -38,6 +52,10 @@ if (localStorage.getItem('cart')) {
 const cartReducer = (state=initialState, action) => {
     switch (action.type) {
         case ADD_TO_CART:
+            return {
+                cart: [...action.payload]
+            }
+        case DELETE_FROM_CART:
             return {
                 cart: [...action.payload]
             }
