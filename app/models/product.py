@@ -1,13 +1,11 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from .purchase import purchase_product
+# from .purchase import purchase_product
 
 # purchase_product = db.Table(
 #     'purchase_product',
 #     db.Column('product_id', db.Integer, db.ForeignKey(add_prefix_for_prod('products.id'))),
 #     db.Column('purchase_id', db.Integer, db.ForeignKey(add_prefix_for_prod('purchases.id')))
 # )
-
-
 
 class Product(db.Model):
     __tablename__ = 'products'
@@ -25,12 +23,12 @@ class Product(db.Model):
     img_url2 = db.Column(db.String, nullable=False)
     img_url3 = db.Column(db.String, nullable=False)
 
-    purchases = db.relationship('Purchase',
-                            secondary = purchase_product,
-                            back_populates = 'products',
-                            lazy=False
-    )
-
+    # purchases = db.relationship('Purchase',
+    #                         secondary = purchase_product,
+    #                         back_populates = 'products',
+    #                         lazy=False
+    # )
+    product_join = db.relationship('PurchaseProduct', back_populates='products')
 
     def to_dict(self):
         return {

@@ -1,6 +1,6 @@
 from app.models import db, SCHEMA, environment
 from app.models.product import Product
-from app.models.purchase import Purchase
+
 
 
 def seed_products():
@@ -35,18 +35,18 @@ def seed_products():
     db.session.add(demo_product_2)
     db.session.add(demo_product_3)
 
-    demo_purchase_1 = Purchase(
-        user_id = 1,
-        # pretax_total_price = 245.00,
-        shipping_instructions = 'Please leave out by the front door'
-    )
+    # demo_purchase_1 = Purchase(
+    #     user_id = 1,
+    #     # pretax_total_price = 245.00,
+    #     shipping_instructions = 'Please leave out by the front door'
+    # )
 
-    db.session.add(demo_purchase_1)
+    # db.session.add(demo_purchase_1)
 
-    demo_purchase_1.products.append(demo_product_1)
-    demo_purchase_1.products.append(demo_product_1)
-    demo_purchase_1.products.append(demo_product_2)
-    demo_purchase_1.products.append(demo_product_3)
+    # demo_purchase_1.products.append(demo_product_1)
+    # demo_purchase_1.products.append(demo_product_1)
+    # demo_purchase_1.products.append(demo_product_2)
+    # demo_purchase_1.products.append(demo_product_3)
 
     db.session.commit()
 
@@ -54,12 +54,12 @@ def undo_products():
     if environment == "production":
         db.session.execute(
             f"TRUNCATE table {SCHEMA}.products RESTART IDENTITY CASCADE;")
-        db.session.execute(
-            f"TRUNCATE table {SCHEMA}.purchases RESTART IDENTITY CASCADE;")
-        db.session.execute(
-            f"TRUNCATE table {SCHEMA}.purchase_product RESTART IDENTITY CASCADE;")
+        # db.session.execute(
+        #     f"TRUNCATE table {SCHEMA}.purchases RESTART IDENTITY CASCADE;")
+        # db.session.execute(
+        #     f"TRUNCATE table {SCHEMA}.purchase_product RESTART IDENTITY CASCADE;")
     else:
         db.session.execute('DELETE FROM products')
-        db.session.execute('DELETE FROM purchases')
-        db.session.execute('DELETE FROM purchase_product')
+        # db.session.execute('DELETE FROM purchases')
+        # db.session.execute('DELETE FROM purchase_product')
     db.session.commit()
