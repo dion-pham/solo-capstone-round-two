@@ -49,6 +49,10 @@ export const deleteFromCart = product => async(dispatch) => {
     dispatch(actionDeleteFromCart(newCart))
 }
 
+// export const clearCart = () => async(dispatch) => {
+//     localStorage.setItem('cart', [])
+//     dispatch(actionDeleteFromCart())
+// }
 
 // reducer
 const initialState={cart:[]}

@@ -11,6 +11,7 @@ import { authenticate } from './store/session';
 import Products from './components/ProductSplash';
 import ProductCard from './components/ProductCard';
 import Cart from './components/Cart';
+import PurchaseHistory from './components/PurchaseHistory';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -54,6 +55,9 @@ function App() {
         </Route>
         <Route path='/cart' exact={true}>
           <Cart/>
+        </Route>
+        <Route path='/order-history' exact={true}>
+          <PurchaseHistory/>
         </Route>
       </Switch>
     </BrowserRouter>

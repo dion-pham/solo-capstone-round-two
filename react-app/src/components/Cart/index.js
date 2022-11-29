@@ -1,12 +1,22 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link,Redirect, useHistory } from "react-router-dom";
 import cartReducer, { actionAddToCart, deleteFromCart } from "../../store/cart";
+import { addUserPurchase } from "../../store/purchase";
 
 
 const Cart = () => {
-    const {cart} = useSelector(state=> state.cart)
     const dispatch = useDispatch()
+    const history = useHistory()
+    const {cart} = useSelector(state=> state.cart)
+    const sessionUserId = useSelector(state => state.session.user.id)
+    const subtotal = cart.reduce((sum, product) => sum + (product.quantity*product.price), 0)
+
+
+    const [shipping, setShipping] = useState('')
+    const [validationErrors, setValidationErrors] = useState([])
+    const [hasSubmitted, setHasSubmitted] = useState(false);
+
 
     const changeCartQuantity = (e, product) => {
         const cart = localStorage.getItem('cart') ?
@@ -19,8 +29,45 @@ const Cart = () => {
         })
 
         localStorage.setItem('cart', JSON.stringify(cart))
-
         dispatch(actionAddToCart(cart))
+    }
+
+    useEffect(() => {
+        const errors = []
+        if (shipping?.length === 0) {
+            errors.push("Shipping field is required")
+        }
+        if (shipping?.length > 250) {
+            errors.push("Shipping must be less than 250 characters")
+        }
+        setValidationErrors(errors)
+    }, [shipping])
+
+    if (!sessionUserId) return <Redirect to="/" />;
+
+
+    const handleSubmit = async(e) => {
+        e.preventDefault()
+        setHasSubmitted(true)
+        if (validationErrors.length) return alert('Cannot submit')
+
+
+        const payload = {
+                user_id: sessionUserId,
+                pretax_total_price: subtotal,
+                shipping_instructions: shipping,
+                purchase_join: cart
+            }
+
+        let createdPurchase = await dispatch(addUserPurchase(payload))
+        if (createdPurchase) {
+            localStorage.setItem('cart', [])
+            // redirect to order history page
+            setShipping('')
+            setValidationErrors([]);
+            setHasSubmitted(false);
+            history.push("/order-history")
+        }
     }
 
     let cartRender;
@@ -67,20 +114,38 @@ const Cart = () => {
     <div>
         <h1>
             Subtotal
-            ${cart.reduce((sum, product) => sum + (product.quantity*product.price), 0)}
+            ${subtotal}
         </h1>
-        <button>
-            Check Out
-        </button>
+        <div>
+        {hasSubmitted && validationErrors.length > 0 && (
+                <div>
+                    The following errors were found:
+                    <ul>
+                        {validationErrors.map((error) => (
+                            <li key={error}><i className='fa fa-exclamation-circle' />  {error}</li>
+                        ))}
+                    </ul>
+                </div>
+            )}
+            <form onSubmit={handleSubmit}>
+                <input
+                        type="text"
+                        placeholder='Shipping Instructions'
+                        value={shipping}
+                        onChange={(e) => setShipping(e.target.value)} />
+                <button>
+                    Check Out
+                </button>
+            </form>
+        </div>
     </div>
     )
     : cartSubtotal = (
     <div>
-        <h2>Your cart is currently empty.</h2>
+        {/* <h2>Your cart is currently empty.</h2> */}
         <h2>Continue browsing.</h2>
     </div>
     )
-
 
 
     return (

@@ -35,7 +35,7 @@ export const deleteUserPurchase = (id) => {
 
 // thunks
 export const addUserPurchase = (newPurchaseData) => async(dispatch) => {
-    const response = await fetch("/purchases", {
+    const response = await fetch("/api/purchases", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newPurchaseData),
@@ -90,11 +90,13 @@ const purchaseReducer = (state=initialState, action) => {
     switch (action.type) {
         case ADD_USER_PURCHASE:
             purchaseStateObj.userPurchases[action.purchase.id] = action.purchase
+            return purchaseStateObj
         case LOAD_ALL_USER_PURCHASES:
             purchaseStateObj.userPurchases = action.purchases
             return purchaseStateObj
         case EDIT_USER_PURCHASE:
             purchaseStateObj.userPurchases[action.purchase.id] = action.purchase
+            return purchaseStateObj
         case DELETE_USER_PURCHASE:
             delete purchaseStateObj.userPurchases[action.purchase.id]
             return purchaseStateObj
