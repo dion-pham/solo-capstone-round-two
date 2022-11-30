@@ -11,7 +11,6 @@ const Products = () => {
     }, [])
 
     const products = useSelector((state) => Object.values(state.products.allProducts))
-    console.log('products', products)
 
     return (
         <div>

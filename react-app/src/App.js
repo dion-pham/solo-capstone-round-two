@@ -10,6 +10,8 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import Products from './components/ProductSplash';
 import ProductCard from './components/ProductCard';
+import Cart from './components/Cart';
+import PurchaseHistory from './components/PurchaseHistory';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -50,6 +52,12 @@ function App() {
         </Route>
         <Route path='/products' exact={true}>
           <Products/>
+        </Route>
+        <Route path='/cart' exact={true}>
+          <Cart/>
+        </Route>
+        <Route path='/orders' exact={true}>
+          <PurchaseHistory/>
         </Route>
       </Switch>
     </BrowserRouter>

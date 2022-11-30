@@ -1,12 +1,11 @@
 from flask import Blueprint, jsonify, request
+import json
 from app.models import User, db
 from app.models.purchase import Purchase
+from app.models.purchase_product import PurchaseProduct
 from flask_login import current_user, login_required
 
 purchase_routes = Blueprint('purchase', __name__)
-
-# creating instance of purchase will be done by cart
-
 
 # fetch a user's purchases by user id
 @purchase_routes.route('/user/<int:id>', methods = ['GET'])
@@ -36,8 +35,35 @@ def fetch_single_purchase(id):
     parsed_user_purchases_dict = {}
     for purchase in user_purchases:
         parsed_user_purchases_dict[purchase.id] = purchase.to_dict()
-    print(parsed_user_purchases_dict,'@@@@@@@@@@@@@@@')
     return parsed_user_purchases_dict
+
+# creating instance of purchase will be done by cart
+@purchase_routes.route('', methods=['POST'])
+def create_purchase():
+    data = request.get_json()
+    purchase = Purchase(
+        user_id = data['user_id'],
+        pretax_total_price = data['pretax_total_price'],
+        shipping_instructions = data['shipping_instructions'])
+    db.session.add(purchase)
+    db.session.commit()
+
+    purchase_join = request.get_json()['purchase_join']
+    for item in purchase_join:
+        new_item = PurchaseProduct(
+            product_id = item['id'],
+            purchase_id = purchase.to_dict()['id'],
+            quantity = int(item['quantity']),
+            size = item['size']
+        )
+        db.session.add(new_item)
+    db.session.commit()
+
+    # return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    return purchase.to_dict()
+
+
+# append the purchaseproduct instances to this as well
 
 #edit a purchases shipping instructions
 @purchase_routes.route('/<int:id>', methods = ['PUT'])
