@@ -40,6 +40,7 @@ const PurchaseHistory = () => {
 
                 {order.shipping_instructions}
                 <PurchaseHistoryEditForm order={order}/>
+                <h4>Total</h4>
                 ${order.pretax_total_price}
                 <h1>order end</h1>
             </div>
