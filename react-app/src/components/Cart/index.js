@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link,Redirect, useHistory } from "react-router-dom";
 import cartReducer, { actionAddToCart, deleteFromCart } from "../../store/cart";
 import { addUserPurchase } from "../../store/purchase";
-
+import { fetchAllProducts } from "../../store/product";
+import { fetchAllUserPurchases } from "../../store/purchase";
 
 const Cart = () => {
     const dispatch = useDispatch()
@@ -66,7 +67,10 @@ const Cart = () => {
             setShipping('')
             setValidationErrors([]);
             setHasSubmitted(false);
-            history.push("/order-history")
+            dispatch(fetchAllUserPurchases(sessionUserId))
+            history.push('/orders')
+
+
         }
     }
 

@@ -56,7 +56,7 @@ function App() {
         <Route path='/cart' exact={true}>
           <Cart/>
         </Route>
-        <Route path='/order-history' exact={true}>
+        <Route path='/orders' exact={true}>
           <PurchaseHistory/>
         </Route>
       </Switch>

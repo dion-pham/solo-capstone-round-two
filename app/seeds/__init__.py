@@ -40,4 +40,5 @@ def undo():
     undo_addresses()
     undo_products()
     undo_purchases()
+    undo_purchaseproducts()
     # Add other undo functions here

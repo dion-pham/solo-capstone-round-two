@@ -4,6 +4,7 @@ from app.models.purchase import Purchase
 def seed_purchases():
     demo_purchase_1= Purchase(
         user_id = 1,
+        pretax_total_price = 250,
         shipping_instructions = 'Please leave out by the front door'
     )
     db.session.add(demo_purchase_1)
