@@ -45,7 +45,7 @@ def upgrade():
     sa.UniqueConstraint('email')
     )
     if environment == "production":
-        __table_args__ = {'schema': SCHEMA}
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA}")
     op.create_table('addresses',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),

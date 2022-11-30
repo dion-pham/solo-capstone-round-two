@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllProducts } from "../../store/product";
 import { fetchAllUserPurchases } from "../../store/purchase";
+import PurchaseHistoryEditForm from "../PurchaseHistoryEditModal/PurchaseHistoryEditForm";
 
 const PurchaseHistory = () => {
     const dispatch = useDispatch()
@@ -45,6 +46,7 @@ const PurchaseHistory = () => {
             )}
 
             {order.shipping_instructions}
+            <PurchaseHistoryEditForm order={order}/>
             {/* // attach edit and delete buttons for this
             // make a separate component for this feature and then append the price and shipping instructions after the fact */}
             ${order.pretax_total_price}

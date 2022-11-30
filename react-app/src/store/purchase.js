@@ -73,12 +73,12 @@ export const updateUserPurchase = (id, payload) => async(dispatch) => {
 }
 
 export const deletingPurchase = (id) => async(dispatch) => {
-    const response = await fetch(`/api/purchases/${id}`)
+    const response = await fetch(`/api/purchases/${id}`, {
+        method: 'DELETE'
+    })
 
     if (response.ok) {
-        const data = await response.json()
-        dispatch(deleteUserPurchase(data))
-        return data
+        dispatch(deleteUserPurchase(id))
     }
 }
 
@@ -98,7 +98,7 @@ const purchaseReducer = (state=initialState, action) => {
             purchaseStateObj.userPurchases[action.purchase.id] = action.purchase
             return purchaseStateObj
         case DELETE_USER_PURCHASE:
-            delete purchaseStateObj.userPurchases[action.purchase.id]
+            delete purchaseStateObj.userPurchases[action.id]
             return purchaseStateObj
         default:
             return state

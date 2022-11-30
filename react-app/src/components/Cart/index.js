@@ -68,7 +68,7 @@ const Cart = () => {
             setValidationErrors([]);
             setHasSubmitted(false);
             dispatch(fetchAllUserPurchases(sessionUserId))
-            history.push('/orders')
+            return history.push('/orders')
 
 
         }
