@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { fetchAllProducts } from "../../store/product";
+import AddToCartForm from "../ProductAddToCartForm";
 
 const ProductCard = () => {
     const dispatch = useDispatch()
@@ -23,6 +24,9 @@ const ProductCard = () => {
             <img src= {targetProduct?.img_url1} alt="Product's image" className='product-card-image'></img>
             <img src= {targetProduct?.img_url2} alt="Product's image" className='product-card-image'></img>
             <img src= {targetProduct?.img_url3} alt="Product's image" className='product-card-image'></img>
+            <div>
+                <AddToCartForm targetProduct={targetProduct}/>
+            </div>
         </div>
     )
 }
