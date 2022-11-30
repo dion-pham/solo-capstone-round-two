@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchAllProducts } from "../../store/product";
+import './ProductSplash.css'
 
 const Products = () => {
     const dispatch = useDispatch()
@@ -13,7 +14,7 @@ const Products = () => {
     const products = useSelector((state) => Object.values(state.products.allProducts))
 
     return (
-        <div>
+        <div className="splash-outer-container">
             {products.map((product) =>
                 <div key={product.id} className='product-card'>
                     <Link className='product-card-link' to={`/products/${product.id}`}>

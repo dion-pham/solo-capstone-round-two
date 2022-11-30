@@ -1,1 +1,8 @@
-/* TODO Add site wide styles */
+img {
+    width: 350px;
+    height: 350px;
+}
+
+#root {
+    font-family: sans-serif
+}

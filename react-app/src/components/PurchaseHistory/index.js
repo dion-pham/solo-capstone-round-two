@@ -13,44 +13,35 @@ const PurchaseHistory = () => {
         dispatch(fetchAllUserPurchases(sessionUserId))
     }, [])
 
-    const allProducts = useSelector(state => Object.values(state.products?.allProducts))
+    // const allProducts = useSelector(state => Object.values(state.products?.allProducts))
     const orderHistory = useSelector(state => Object.values(state.purchases?.userPurchases))
 
-    if (!allProducts.length) return null
-    if (!orderHistory.length) return null
+    // if (!allProducts.length) return null
+    // if (!orderHistory.length) return null
 
-    const mapOrderHistory = orderHistory.map(indPurchase => indPurchase.purchase_join?.map(item => item = item.product_id))
-    if (!mapOrderHistory.length) return null
+    // const mapOrderHistory = orderHistory.map(indPurchase => indPurchase.purchase_join?.map(item => item = item.product_id))
+    // if (!mapOrderHistory.length) return null
 
-    const idsToProduct = mapOrderHistory.map((orderList) => orderList?.map(indId => indId = Object.values(allProducts[indId-1])))
-    if (!idsToProduct.length) return null
-
-
-
-
-
+    // const idsToProduct = mapOrderHistory.map((orderList) => orderList?.map(indId => indId = Object.values(allProducts[indId-1])))
+    // if (!idsToProduct.length) return null
 
     return (
         <div>
         {orderHistory.map((order) =>
             <div key={order.id} className='order-card'>
+                {<img src= {order.purchase_join[0].product_details.img_url1}></img>}
+                {<img src= {order.purchase_join[1] ? order.purchase_join[1].product_details.img_url1 : 'https://i.imgur.com/poY9Fmm.png' }></img>}
+                {<img src= {order.purchase_join[2] ? order.purchase_join[2].product_details.img_url1 : 'https://i.imgur.com/poY9Fmm.png'}></img>}
+                {order.purchase_join.map((item) =>
+                        <div key={item.id}>
+                            {item.product_details.name}
+                        </div>
+                )}
 
-            {<img src= {idsToProduct[order.id-1][0][3]}></img>}
-
-            {/* done to list all item names */}
-            {idsToProduct[order.id-1].map((item) =>
-                <div key={item.id}>
-                    {/* <img src= {item[3]} alt="Product's image" className='purchase-history-splash-image'></img> */}
-                    {item[6]}
-                </div>
-            )}
-
-            {order.shipping_instructions}
-            <PurchaseHistoryEditForm order={order}/>
-            {/* // attach edit and delete buttons for this
-            // make a separate component for this feature and then append the price and shipping instructions after the fact */}
-            ${order.pretax_total_price}
-            <h1>order end</h1>
+                {order.shipping_instructions}
+                <PurchaseHistoryEditForm order={order}/>
+                ${order.pretax_total_price}
+                <h1>order end</h1>
             </div>
             )}
         </div>

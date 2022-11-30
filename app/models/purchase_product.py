@@ -12,7 +12,7 @@ class PurchaseProduct(db.Model):
     quantity = db.Column(db.Integer, nullable=False)
     size = db.Column(db.String, nullable=False)
 
-    products = db.relationship('Product', back_populates='product_join')
+    products = db.relationship('Product', back_populates='product_join', lazy=False)
     purchases = db.relationship('Purchase', back_populates='purchase_join', lazy=False)
 
     def to_dict(self):
@@ -21,5 +21,6 @@ class PurchaseProduct(db.Model):
             'product_id': self.product_id,
             'purchase_id': self.purchase_id,
             'quantity': self.quantity,
-            'size': self.size
+            'size': self.size,
+            'product_details': self.products.to_dict()
         }
