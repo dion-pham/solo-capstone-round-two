@@ -1,29 +1,29 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 import { fetchAllProducts } from "../../store/product";
 import { fetchAllUserPurchases } from "../../store/purchase";
 import PurchaseHistoryEditForm from "../PurchaseHistoryEditModal/PurchaseHistoryEditForm";
 
 const PurchaseHistory = () => {
     const dispatch = useDispatch()
-    const sessionUserId = useSelector(state => state.session?.user.id)
+    const sessionUserId = useSelector(state => state.session.user.id)
+
 
     useEffect(()=> {
         dispatch(fetchAllProducts())
         dispatch(fetchAllUserPurchases(sessionUserId))
     }, [])
 
+
     // const allProducts = useSelector(state => Object.values(state.products?.allProducts))
     const orderHistory = useSelector(state => Object.values(state.purchases?.userPurchases))
 
-    // if (!allProducts.length) return null
-    // if (!orderHistory.length) return null
+    if (!sessionUserId) return <Redirect to="/" />;
 
     // const mapOrderHistory = orderHistory.map(indPurchase => indPurchase.purchase_join?.map(item => item = item.product_id))
-    // if (!mapOrderHistory.length) return null
-
     // const idsToProduct = mapOrderHistory.map((orderList) => orderList?.map(indId => indId = Object.values(allProducts[indId-1])))
-    // if (!idsToProduct.length) return null
+
 
     return (
         <div>
