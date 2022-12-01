@@ -70,7 +70,7 @@ const PurchaseHistoryEditForm = ({order}) => {
             )}
             <form onSubmit={handleSubmit}>
                 <textarea
-                    placeholder='review'
+                    placeholder='Shipping Info'
                     value={shipping}
                     onChange={(e) => setShipping(e.target.value)} />
                 <button>
