@@ -25,7 +25,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=100), nullable=False),
     sa.Column('size', sa.String(length=25), nullable=True),
-    sa.Column('description', sa.String(length=200), nullable=False),
+    sa.Column('description', sa.String(), nullable=False),
     sa.Column('category', sa.String(length=25), nullable=False),
     sa.Column('price', sa.Float(precision=10), nullable=False),
     sa.Column('img_url1', sa.String(), nullable=False),
