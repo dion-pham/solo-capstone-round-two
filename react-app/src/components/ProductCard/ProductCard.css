@@ -2,20 +2,24 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    padding: 5rem 0 5rem 0;
 }
 
 .product-card-left {
     display: flex;
     flex-direction: column;
+    align-content: left;
     position: sticky;
-    /* fixed */
+    max-height: 10vh;
+    left: 1rem;
+    top: 5rem;
 }
 
 .product-card-middle {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    overflow: hidden;
+    height: 100vh;
 }
 
 .product-card-middle img {
@@ -23,13 +27,15 @@
     height: 100%;
 }
 
-.img-wrapper {
-    display: inline-block;
-    overflow: hidden;
+.size-h4 {
+    margin-top: 0;
 }
 
 .product-card-right {
     display: flex;
     flex-direction: column;
     position: sticky;
+    max-height: 10vh;
+    right: 1rem;
+    top: 5rem;
 }

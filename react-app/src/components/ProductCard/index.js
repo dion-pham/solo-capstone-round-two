@@ -17,6 +17,7 @@ const ProductCard = () => {
     const index = productId - 1
     const targetProduct = products[index]
 
+
     return (
         <div className="product-card-container">
             <div className="product-card-left">
