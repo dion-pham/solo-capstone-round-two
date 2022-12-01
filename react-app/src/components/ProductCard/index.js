@@ -38,7 +38,7 @@ const ProductCard = () => {
                 <div className="img-wrapper">
                     <img src={targetProduct?.img_url2} alt="Product's image" className='product-card-image'></img>
                 </div>
-                <div className="img-wrapper">
+                <div className="img-wrapper" id='img-wrapper-last'>
                     <img src={targetProduct?.img_url3} alt="Product's image" className='product-card-image'></img>
                 </div>
             </div>

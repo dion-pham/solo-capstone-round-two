@@ -48,3 +48,23 @@ input[type=radio]:checked + .label-radio{
     min-width: auto;
     cursor: pointer;
 }
+
+
+.add-to-cart-msg {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 0 0 0;
+    column-gap: 5px;
+}
+
+.cart-green-msg {
+    color: #79CEA7;
+}
+
+.cart-link:link {
+    color: black;
+}
+
+.cart-link:visited {
+    color: black;
+}

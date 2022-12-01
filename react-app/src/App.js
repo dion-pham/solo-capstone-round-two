@@ -53,12 +53,12 @@ function App() {
         <Route path='/products' exact={true}>
           <Products/>
         </Route>
-        <Route path='/cart' exact={true}>
+        <ProtectedRoute path='/cart' exact={true}>
           <Cart/>
-        </Route>
-        <Route path='/orders' exact={true}>
+        </ProtectedRoute>
+        <ProtectedRoute path='/orders' exact={true}>
           <PurchaseHistory/>
-        </Route>
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );

@@ -2,15 +2,16 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    padding: 5rem 0 5rem 0;
+    padding: 5rem 0 25px 0;
 }
 
 .product-card-left {
     display: flex;
     flex-direction: column;
-    align-content: left;
+    align-content: center;
     position: sticky;
     max-height: 10vh;
+    padding: 0 0 0 10px;
     top: 5rem;
     gap: 10px
 }
@@ -30,6 +31,7 @@
 .product-card-left-description {
     font-size: 18px;
     font-style: italic;
+    max-width: 300px;
 }
 
 .product-card-middle {
@@ -45,7 +47,11 @@
 .img-wrapper img {
     width: 35rem;
     height: 35rem;
-    /* stopped here */
+    padding: 0 0 10px 0;
+}
+
+#img-wrapper-last {
+    padding: 0 0 35px 0
 }
 
 .size-h4 {
