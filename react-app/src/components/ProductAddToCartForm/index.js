@@ -15,6 +15,8 @@ const AddToCartForm = ({ targetProduct }) => {
 
     // if you click on add to cart button, redirect to sign up page
 
+
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         setAddToCard(true)
@@ -22,8 +24,17 @@ const AddToCartForm = ({ targetProduct }) => {
         dispatch(addToCart(targetProduct))
     }
 
+    // let disableCartForNonLoggedIn;
+    // if (!sessionUser) {
+    //     disableCartForNonLoggedIn = (
+    //         <div>
+    //             Please log or sign up to add this item to the cart!
+    //         </div>
+    //     )
+    // }
+
     let addtoCartMessage;
-    if (addedToCart) {
+    if (addedToCart && sessionUser) {
         addtoCartMessage = (
             <div className='add-to-cart-msg'>
                 <div className='cart-green-msg'>Added to Cart!</div>
@@ -36,8 +47,12 @@ const AddToCartForm = ({ targetProduct }) => {
                 </div>
             </div>
         )
-    } else {
-        addtoCartMessage = null
+    } else if (addedToCart) {
+        addtoCartMessage = (
+            <div className='add-to-cart-msg'>
+                Please log in or sign up to add this item to the cart!
+            </div>
+        )
     }
 
     return (

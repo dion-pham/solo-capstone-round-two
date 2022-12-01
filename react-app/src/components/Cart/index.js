@@ -63,14 +63,11 @@ const Cart = () => {
         let createdPurchase = await dispatch(addUserPurchase(payload))
         if (createdPurchase) {
             localStorage.setItem('cart', [])
-            // redirect to order history page
             setShipping('')
             setValidationErrors([]);
             setHasSubmitted(false);
             dispatch(fetchAllUserPurchases(sessionUserId))
             return history.push('/orders')
-
-
         }
     }
 
