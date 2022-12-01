@@ -107,9 +107,7 @@ def seed_products():
         name = "AVALANCHE PANTS - CC",
         description = """
         Our fan favorite Hiking Pants are back with an updated fit and higher quality materials! Featuring two back pockets, a rubber patch, two knit patches, chalk pockets, and zippers up the legs for easy boot tying. Based on a pair of 1980s hiking pants.
-
         ComplexCon Exclusive!
-
         FEATURES OUR NEW STORES LOGO
         """,
         category = 'Bottoms',
