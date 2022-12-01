@@ -21,13 +21,13 @@ const ProductCard = () => {
     return (
         <div className="product-card-container">
             <div className="product-card-left">
-                <div>
+                <div className="product-card-left-name">
                     {targetProduct?.name}
                 </div>
-                <div>
-                    ${targetProduct?.price}
+                <div className="product-card-left-price">
+                    ${targetProduct?.price}.00
                 </div>
-                <div>
+                <div className="product-card-left-description">
                     {targetProduct?.description}
                 </div>
             </div>
@@ -43,6 +43,12 @@ const ProductCard = () => {
                 </div>
             </div>
             <div className="product-card-right">
+                <div className="product-card-right-shopping-text">
+                    <h4 className="payment-h4">
+                    Pay in 4 interest-free installments for orders over $50.00 with
+                    </h4>
+                <img src={"https://i.imgur.com/ywv04QJ.png"} alt='shoppay' className="shop-pay-image"></img>
+                </div>
                 <AddToCartForm targetProduct={targetProduct} />
             </div>
         </div>

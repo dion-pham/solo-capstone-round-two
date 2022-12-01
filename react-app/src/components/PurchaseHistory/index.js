@@ -30,8 +30,8 @@ const PurchaseHistory = () => {
         {orderHistory.map((order) =>
             <div key={order.id} className='order-card'>
                 {<img src= {order.purchase_join[0].product_details.img_url1}></img>}
-                {<img src= {order.purchase_join[1] ? order.purchase_join[1].product_details.img_url1 : 'https://i.imgur.com/poY9Fmm.png' }></img>}
-                {<img src= {order.purchase_join[2] ? order.purchase_join[2].product_details.img_url1 : 'https://i.imgur.com/poY9Fmm.png'}></img>}
+                {<img src= {order.purchase_join[1] ? order.purchase_join[1].product_details.img_url1 : 'https://i.imgur.com/9oJInNU.png' }></img>}
+                {<img src= {order.purchase_join[2] ? order.purchase_join[2].product_details.img_url1 : 'https://i.imgur.com/9oJInNU.png'}></img>}
                 {order.purchase_join.map((item) =>
                         <div key={item.id}>
                             {item.product_details.name}
