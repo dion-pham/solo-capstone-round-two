@@ -64,15 +64,20 @@ if (localStorage.getItem('cart')) {
 }
 
 const cartReducer = (state=initialState, action) => {
+    let cartStateObj = {...state}
     switch (action.type) {
         case ADD_TO_CART:
-            return {
-                cart: [...action.payload]
-            }
+            cartStateObj.cart = [...action.payload]
+            return cartStateObj
+            // return {
+            //     cart: [...action.payload]
+            // }
         case DELETE_FROM_CART:
-            return {
-                cart: [...action.payload]
-            }
+            cartStateObj.cart = [...action.payload]
+            return cartStateObj
+            // return {
+            //     cart: [...action.payload]
+            // }
         default:
             return state
     }

@@ -15,17 +15,8 @@ def fetch_user_purchases(id):
     parsed_user_purchases_dict = {}
     for purchase in user_purchases:
         parsed_user_purchases_dict[purchase.id] = purchase.to_dict()
-        # loop through the products key in dictionary and then grab product.price
-        # product_list = purchase.to_dict()['products']
-        # sum = 0
-        # for ind_product in product_list:
-            # sum = sum + ind_product['price']
-        # add it to a sum and then make purchase.pretaxprice = sum
-    # for purchase in user_purchases:
-        # parsed_user_purchases_dict[purchase.id]["pretax_total_price"] = sum
     return parsed_user_purchases_dict
 
-# do the same pretax total iteration above for the get route below
 
 # fetch a purchase by its individual id
 @purchase_routes.route('/<int:id>', methods = ['GET'])

@@ -1,3 +1,70 @@
-.sizing-form li {
+
+
+.size-radio-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.size-h4 {
+    margin-bottom: 0;
+}
+
+.size-radio-container-ul {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    gap: 3rem;
+    padding: 0;
+}
+
+.size-radio-container-ul li {
     list-style: none;
+}
+
+.input {
+    display: none;
+
+}
+
+.label-radio {
+    border: 1px solid black;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+input[type=radio]:checked + .label-radio{
+    background-color: black;
+    color: white;
+}
+
+.add-cart-button {
+    background-color: black;
+    color: white;
+    margin-top: 3rem;
+    padding: 5px;
+    min-height: 44px;
+    max-width: 300px;
+    min-width: auto;
+    cursor: pointer;
+}
+
+
+.add-to-cart-msg {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 0 0 0;
+    column-gap: 5px;
+}
+
+.cart-green-msg {
+    color: #79CEA7;
+}
+
+.cart-link:link {
+    color: black;
+}
+
+.cart-link:visited {
+    color: black;
 }

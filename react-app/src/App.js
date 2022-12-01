@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import LoginForm from './components/auth/LoginForm';
+import LoginForm from './components/auth/LoginFormModal/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -53,12 +53,12 @@ function App() {
         <Route path='/products' exact={true}>
           <Products/>
         </Route>
-        <Route path='/cart' exact={true}>
+        <ProtectedRoute path='/cart' exact={true}>
           <Cart/>
-        </Route>
-        <Route path='/orders' exact={true}>
+        </ProtectedRoute>
+        <ProtectedRoute path='/orders' exact={true}>
           <PurchaseHistory/>
-        </Route>
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );
