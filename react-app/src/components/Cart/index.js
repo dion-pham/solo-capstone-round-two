@@ -57,7 +57,6 @@ const Cart = () => {
 
     if (!sessionUserId) return <Redirect to="/" />;
 
-
     const handleSubmit = async (e) => {
         e.preventDefault()
         setHasSubmitted(true)

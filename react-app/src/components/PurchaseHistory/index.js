@@ -74,7 +74,7 @@ const PurchaseHistory = () => {
                                     <ul key={item.id} className='order-column-3-ul'>
                                         <li className="item-list">
                                             <Link className="item-list-link" to={`/products/${item.product_id}`} >
-                                                {item.product_details.name}
+                                                {item.product_details.name} x{item.quantity}
                                             </Link>
                                         </li>
                                     </ul>
