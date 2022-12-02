@@ -73,7 +73,7 @@ const PurchaseHistory = () => {
                                 {order.purchase_join.map((item) =>
                                     <ul key={item.id} className='order-column-3-ul'>
                                         <li className="item-list">
-                                            <Link className="item-list-link" to={`/products/${item.id}`} >
+                                            <Link className="item-list-link" to={`/products/${item.product_id}`} >
                                                 {item.product_details.name}
                                             </Link>
                                         </li>
