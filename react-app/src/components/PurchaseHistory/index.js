@@ -49,7 +49,7 @@ const PurchaseHistory = () => {
                         </div>
                     </th>
                     <th scope='row'>Item List</th>
-                    <th scope='row'>Shipping</th>
+                    <th scope='row'>Shipping Information</th>
                     <th scope='row'>Total Price</th>
                 </tr>
             </thead>
@@ -85,7 +85,7 @@ const PurchaseHistory = () => {
                         <td className="table-column-4">
                             <div className="order-column-4">
                                 <div>
-                                    {order.shipping_instructions}
+                                    "{order.shipping_instructions}"
                                 </div>
                                 <div>
                                     <PurchaseHistoryEditForm order={order} />
@@ -94,8 +94,10 @@ const PurchaseHistory = () => {
                         </td>
                         <td className="table-column-5a">
                             <div>
-                                <div>
+                                <div >
+                                    <h3 className="order-history-price">
                                     ${order.pretax_total_price}
+                                    </h3>
                                 </div>
                             </div>
                         </td>
@@ -106,7 +108,7 @@ const PurchaseHistory = () => {
     ) :
         accountOrderHistory = (
             <h1>
-                You have no orders! Browse around for something you'll like.
+                You have no orders, {sessionUser.first_name}! Browse around for something you'll like.
             </h1>
         )
 

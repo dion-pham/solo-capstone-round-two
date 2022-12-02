@@ -14,7 +14,7 @@
 .edit-shipping-errors {
     display: flex;
     flex-direction: column;
-    color: red;
+    color: black;
     padding: 0;
 }
 /* .edit-shipping-form  {
@@ -26,17 +26,23 @@
     color: white;
     margin-top: 5px;
     min-height: 44px;
-    max-width: 300px;
-    min-width: auto;
+    width: 145px;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .refund-button {
     background-color: black;
     color: white;
-    margin-top: 5px;
+    margin: 5px 7px 0 0;
+    border: 0;
+    padding: 0 0 0 0;
     min-height: 44px;
-    max-width: 300px;
-    min-width: auto;
+    width: 145px;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

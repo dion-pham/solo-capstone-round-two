@@ -1,0 +1,42 @@
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 750px;
+    /* parent container needs a set width/height */
+    height: 55vh;
+    gap: 10px;
+    margin: 20px 5px 20px 5px;
+}
+
+.login-words>h3 {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 35px;
+    padding: 0;
+    /* bottom: 50rem; */
+}
+
+.login-button {
+    padding: 20px 0 0 5px ;
+}
+
+.login-form button {
+    width: 520px;
+    height: 52px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form input {
+    padding: 10px 0 0 5px ;
+    width: 520px;
+    height: 52px;
+}

@@ -64,7 +64,7 @@ const PurchaseHistoryEditForm = ({ order }) => {
                 {hasSubmitted && validationErrors.length > 0 && (
                     <div className='edit-shipping-errors'>
                         <div>
-                        The following errors were found:
+                            The following errors were found:
                         </div>
                         <ul>
                             {validationErrors.map((error) => (
@@ -84,14 +84,16 @@ const PurchaseHistoryEditForm = ({ order }) => {
                         <button className='change-shipping-button'>
                             Change Shipping
                         </button>
+                    </div>
+                </form>
+            </div>
+            <div>
                 <button className='refund-button' onClick={() => {
                     deletePurchase()
                 }}
                 >
                     Refund
                 </button>
-                    </div>
-                </form>
             </div>
         </div>
     )

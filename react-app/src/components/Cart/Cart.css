@@ -39,6 +39,34 @@
     padding-bottom: 7px;
 }
 
+.product-name-and-size {
+    font-weight: bold;
+    font-style: italic;
+}
+
+.cart-card-link:link {
+    text-decoration: none;
+    color: black;
+}
+
+.cart-card-link:visited {
+    color: black;
+}
+
+.cart-card-link:hover {
+    color: #FFB627
+}
+
+.remove-button {
+    background-color: black;
+    color: white;
+    margin-top: 5px;
+    min-height: 44px;
+    max-width: 300px;
+    min-width: auto;
+    cursor: pointer;
+}
+
 .table-column-3 *, .table-column-4 *, .table-column-5 * {
     display: flex;
     justify-content: center;

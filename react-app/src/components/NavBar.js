@@ -26,7 +26,7 @@ const NavBar = () => {
           </li> */}
           <li>
             <NavLink to='/orders' exact={true} activeClassName='active'>
-              Account
+              Order History
             </NavLink>
           </li>
           <li>

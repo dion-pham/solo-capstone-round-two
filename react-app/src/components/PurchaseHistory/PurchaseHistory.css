@@ -15,6 +15,10 @@
     column-gap: 5px;
 }
 
+.order-table-row {
+    margin-bottom: 50px;
+}
+
 .table-column-2a *, .table-column-5a *{
     display: flex;
     justify-content: center;
@@ -27,9 +31,8 @@
     align-items: center
 }
 
-
 .item-list {
-    font-weight: bold;
+    /* font-weight: bold; */
     font-style: italic;
 }
 
@@ -45,8 +48,20 @@
 .item-list-link:hover {
     color: #FFB627
 }
+
+.order-column-3-ul {
+    margin: 0;
+    padding: 0 0 5px 0
+}
 .order-column-4 {
     display: flex;
     flex-direction: column;
-    gap: 10px
+    gap: 10px;
+    margin-top: 8rem;
+}
+
+.order-history-price {
+    font-size: x-large;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px black
 }

@@ -103,17 +103,20 @@ const Cart = () => {
                             </Link>
                         </td>
                         <td className="table-column-2">
-                            <div>
-                                {product.name}
+                            <div className="product-name-and-size">
+                            <Link className='cart-card-link' to={`/products/${product.id}`}>
+                            {product.name}
+                            </Link>
                             </div>
                             <div>
                                 {product.size && (
-                                    <div>
+                                    <div className="product-name-and-size">
                                         Size: {product.size}
                                     </div>
                                 )}
                             </div>
                             <button
+                                className="remove-button"
                                 onClick={() => dispatch(deleteFromCart(product))}
                             >
                                 Remove
