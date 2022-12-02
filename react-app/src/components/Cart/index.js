@@ -190,7 +190,6 @@ const Cart = () => {
     )
         : cartSubtotal = null
 
-
     return (
         <div className="cart-container">
             <h1 className="cart-title">Shopping Cart</h1>
