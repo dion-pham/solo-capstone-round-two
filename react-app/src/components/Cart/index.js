@@ -10,6 +10,7 @@ const Cart = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const { cart } = useSelector(state => state?.cart)
+    const sessionUser = useSelector(state => state.session.user)
     const sessionUserId = useSelector(state => state.session.user.id)
     const subtotal = cart.reduce((sum, product) => sum + (product.quantity * product.price), 0)
 
@@ -33,13 +34,9 @@ const Cart = () => {
         cart.forEach(item => {
             if (item.id === product.id) {
                 item.quantity = e.target.value
-                // if (item.quantity === 5 || item.quantity === 1) {
-                //     errors.push("Item must be 1-5 in quantity. Please remove if you no longer wish to purchase")
-                //     setValidationErrors(errors)
-                //     return
-                // }
             }
         })
+
         localStorage.setItem('cart', JSON.stringify(cart))
         dispatch(actionAddToCart(cart))
     }
@@ -52,8 +49,20 @@ const Cart = () => {
         if (shipping?.length > 250) {
             errors.push("Shipping must be less than 250 characters")
         }
+
+        const cart = localStorage.getItem('cart') ?
+            JSON.parse(localStorage.getItem('cart')) : []
+
+        cart.map((item) => {
+            if (item.quantity > 5) {
+                errors.push("You can not buy more than five!")
+            } else if (item.quantity <1 ) {
+                errors.push("You must buy at least 1! Remove item if you no longer wish to purchase.")
+            }
+        })
+
         setValidationErrors(errors)
-    }, [shipping])
+    }, [shipping,cart])
 
     if (!sessionUserId)  {
         localStorage.removeItem('cart')
@@ -132,9 +141,10 @@ const Cart = () => {
                         <td className="table-column-4">
                             <div>
                                 <input
+                                    className="price-input"
                                     type='number'
                                     min='1'
-                                    max='5'
+                                    // max='5'
                                     value={product.quantity}
                                     onChange={e => changeCartQuantity(e, product)}
                                 // display error message for quantity
@@ -151,10 +161,24 @@ const Cart = () => {
             </tbody>
         </table>
     ) : cartRender = (
-        <div>
-            <h1>Your cart is currently empty.</h1>
-            <h2>Continue browsing.</h2>
+        <div className="no-cart-container">
+        <h1>
+            You have nothing in your cart, {sessionUser.first_name}!
+        </h1>
+        <div className="cart-browse-link">
+            <h1>
+                <Link to={'/products'} className='cart-link-tag'>
+                    Browse
+                </Link>
+            </h1>
+            <h1>
+                around for something you'll like.
+            </h1>
         </div>
+        <div>
+        <img src={"https://i.imgur.com/tiAVkCW.png"} alt='logo' className="cart-logo-image"></img>
+        </div>
+    </div>
     )
 
     let cartSubtotal;
@@ -165,7 +189,7 @@ const Cart = () => {
                 ${subtotal}.00
             </h4>
             <div>
-                {hasSubmitted && validationErrors.length > 0 && (
+                {validationErrors.length > 0 && (
                     <div>
                         The following errors were found:
                         <ul>

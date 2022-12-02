@@ -8,7 +8,7 @@ const [showModal, setShowModal] = useState(false);
 
     return (
     <>
-        <div onClick={() => setShowModal(true)} className="profile-btm-div">Sign In</div>
+        <button onClick={() => setShowModal(true)} className="signed-out-login-button">Login</button>
         {showModal && (
         <Modal onClose={() => setShowModal(false)}>
             <LoginForm showModal={showModal} setShowModal={setShowModal}/>

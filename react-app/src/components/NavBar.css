@@ -1,6 +1,80 @@
+.nav-bar-container {
+    padding-top: 20px;
+    background-color: white;
+    width: 95%;
+    position: fixed;
+    top: 0;
+    z-index: 2;
+}
+
 .nav-bar-ul {
     display: flex;
-    flex-direction:row;
-    justify-content: space-around;
+    flex-direction: row;
+    justify-content: space-between;
     list-style: none;
+
+}
+
+.nav-bar-logo {
+    width: 75%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.nav-bar-right {
+    display: flex;
+    flex-direction: row;
+    gap: 20px
+}
+
+.profile-pic-button {
+    position: relative;
+    /* border: 3px solid red; */
+}
+
+.profile-pic-button:hover {
+    cursor: pointer;
+    color: red;
+}
+
+.order-history-dropdown {
+    font-size: smaller;
+
+}
+
+.order-history-dropdown:hover {
+    font-size: smaller;
+    color: #FFB627
+}
+
+.drop-down {
+    border: 2px solid black;
+    background-color: white;
+    position: absolute;
+    margin-top: 5px;
+    padding: 10px;
+    right: 1px;
+    z-index: 3;
+    /* right: auto; */
+    /* right: 10px; */
+}
+
+.shop-all-button:hover {
+    cursor: pointer;
+    color: #FFB627;
+}
+
+.cart-button:hover {
+    cursor: pointer;
+    color: red;
+}
+
+.logout-button {
+    background-color: black;
+    color: white;
+    margin-top: 1rem;
+    min-height: 30px;
+    max-width: 300px;
+    min-width: auto;
+    cursor: pointer;
 }
