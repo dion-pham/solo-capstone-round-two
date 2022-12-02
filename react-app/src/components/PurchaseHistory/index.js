@@ -32,7 +32,6 @@ const PurchaseHistory = () => {
         <table className="table-container">
             <thead className='table-header'>
                 <tr>
-                    <th scope='row' colspan='1'></th>
                     <th scope='row'>
                         <div className="header-2">
                             <div>
@@ -48,8 +47,9 @@ const PurchaseHistory = () => {
                             </div>
                         </div>
                     </th>
+                    <th scope='row'>Order #</th>
                     <th scope='row'>Item List</th>
-                    <th scope='row'>Shipping Information</th>
+                    <th scope='row'>Shipping Address</th>
                     <th scope='row'>Total Price</th>
                 </tr>
             </thead>

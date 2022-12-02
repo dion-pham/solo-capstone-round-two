@@ -55,7 +55,10 @@ const Cart = () => {
         setValidationErrors(errors)
     }, [shipping])
 
-    if (!sessionUserId) return <Redirect to="/" />;
+    if (!sessionUserId)  {
+        localStorage.removeItem('cart')
+        return <Redirect to="/" />;
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -177,7 +180,7 @@ const Cart = () => {
                         className="cart-subtotal-form-input"
                         type="text"
                         placeholder='Shipping
-                        Info'
+                        Address'
                         value={shipping}
                         onChange={(e) => setShipping(e.target.value)} />
                     <button className="checkout-button">
