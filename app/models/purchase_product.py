@@ -10,7 +10,7 @@ class PurchaseProduct(db.Model):
     product_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('products.id')))
     purchase_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('purchases.id')))
     quantity = db.Column(db.Integer, nullable=False)
-    size = db.Column(db.String, nullable=False)
+    size = db.Column(db.String)
 
     products = db.relationship('Product', back_populates='product_join', lazy=False)
     purchases = db.relationship('Purchase', back_populates='purchase_join', lazy=False)

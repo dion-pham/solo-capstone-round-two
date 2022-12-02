@@ -3,6 +3,7 @@
     flex-direction: row;
     justify-content: space-evenly;
     padding: 5rem 0 25px 0;
+    margin-bottom: 500px;
 }
 
 .product-card-left {

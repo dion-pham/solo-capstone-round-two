@@ -12,6 +12,7 @@ import Products from './components/ProductSplash';
 import ProductCard from './components/ProductCard';
 import Cart from './components/Cart';
 import PurchaseHistory from './components/PurchaseHistory';
+import CreaterLinks from './components/Footer';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -60,6 +61,7 @@ function App() {
           <PurchaseHistory/>
         </ProtectedRoute>
       </Switch>
+      <CreaterLinks/>
     </BrowserRouter>
   );
 }

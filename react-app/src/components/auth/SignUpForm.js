@@ -1,21 +1,56 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import './SignUpForm.css'
 
 const SignUpForm = () => {
-  const [errors, setErrors] = useState([]);
-  // const [username, setUsername] = useState('');
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const [errors, setErrors] = useState([]);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    const errors = []
+    if (firstName.length === 0) {
+      errors.push("First name field is required")
+    }
+    if (firstName.length > 50) {
+      errors.push("First name field must be less than 50 characters")
+    }
+    if (lastName.length === 0) {
+      errors.push("Last name field is required")
+    }
+    if (lastName.length > 50) {
+      errors.push("Last name field must be less than 50 characters")
+    }
+    if (email.length === 0) {
+      errors.push("Email field is required")
+    }
+    if (email.length > 50) {
+      errors.push("Email name field must be less than 50 characters")
+    }
+    if (!email.includes('.') || !email.includes('@')) {
+      errors.push('Email must be valid')
+    }
+    if (password.length === 0) {
+      errors.push("Password field is required")
+    }
+    if (repeatPassword.length === 0) {
+      errors.push("Confirm password field is required")
+    }
+    setErrors(errors)
+  }, [firstName, lastName, email, password, repeatPassword])
+
   const onSignUp = async (e) => {
     e.preventDefault();
+    setHasSubmitted(true)
+    resetErrors()
     if (password === repeatPassword) {
       const data = await dispatch(signUp(firstName, lastName, email, password));
       if (data) {
@@ -24,16 +59,16 @@ const SignUpForm = () => {
     }
   };
 
-  // const updateUsername = (e) => {
-  //   setUsername(e.target.value);
-  // };
+  const resetErrors = () => {
+    setErrors([])
+  }
 
-    const updateFirstName = (e) => {
-      setFirstName(e.target.value);
+  const updateFirstName = (e) => {
+    setFirstName(e.target.value);
   };
 
-    const updateLastName = (e) => {
-      setLastName(e.target.value);
+  const updateLastName = (e) => {
+    setLastName(e.target.value);
   };
 
   const updateEmail = (e) => {
@@ -53,60 +88,74 @@ const SignUpForm = () => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
+    <div className='sign-up-container'>
+      <h1>Create Account</h1>
+      <form className='sign-up-form' onSubmit={onSignUp}>
+        <div>
+          {hasSubmitted && errors.length > 0 && (
+            <div>
+              The following errors were found:
+              <ul>
+                {errors.map((error, idx) => (
+                  <li key={idx}><i className='fa fa-exclamation-circle' />  {error}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+        <div>
+          <input
+            type='text'
+            placeholder='First Name'
+            name='firstName'
+            onChange={updateFirstName}
+            value={firstName}
+          />
+        </div>
+        <div>
+          <input
+            type='text'
+            placeholder='Last Name'
+            name='lastName'
+            onChange={updateLastName}
+            value={lastName}
+          />
+        </div>
+        <div>
+          <input
+            type='text'
+            placeholder='Email'
+            name='email'
+            onChange={updateEmail}
+            value={email}
+          />
+        </div>
+        <div>
+          <input
+            type='password'
+            placeholder='Password'
+            name='password'
+            onChange={updatePassword}
+            value={password}
+          />
+        </div>
+        <div>
+          <input
+            type='password'
+            name='repeat_password'
+            placeholder='Repeat Password'
+            onChange={updateRepeatPassword}
+            value={repeatPassword}
+          />
+        </div>
+        <button type='submit'>Sign Up</button>
+      </form>
+      <div className='return-to-store'>
+        <Link to={"/products"}>
+          Return to Store
+        </Link>
       </div>
-      <div>
-        <label>First Name</label>
-        <input
-          type='text'
-          name='firstName'
-          onChange={updateFirstName}
-          value={firstName}
-        ></input>
-      </div>
-      <div>
-        <label>Last Name</label>
-        <input
-          type='text'
-          name='lastName'
-          onChange={updateLastName}
-          value={lastName}
-        ></input>
-      </div>
-      <div>
-        <label>Email</label>
-        <input
-          type='text'
-          name='email'
-          onChange={updateEmail}
-          value={email}
-        ></input>
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          type='password'
-          name='password'
-          onChange={updatePassword}
-          value={password}
-        ></input>
-      </div>
-      <div>
-        <label>Repeat Password</label>
-        <input
-          type='password'
-          name='repeat_password'
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
-        ></input>
-      </div>
-      <button type='submit'>Sign Up</button>
-    </form>
+    </div>
   );
 };
 
