@@ -1,0 +1,42 @@
+.edit-shipping-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-shipping-input-and-button {
+    display: flex;
+    flex-direction: column;
+    padding-top: 5px;
+}
+
+.edit-shipping-errors {
+    display: flex;
+    flex-direction: column;
+    color: red;
+    padding: 0;
+}
+/* .edit-shipping-form  {
+    height: 44px;
+} */
+
+.change-shipping-button {
+    background-color: black;
+    color: white;
+    margin-top: 5px;
+    min-height: 44px;
+    max-width: 300px;
+    min-width: auto;
+    cursor: pointer;
+}
+
+.refund-button {
+    background-color: black;
+    color: white;
+    margin-top: 5px;
+    min-height: 44px;
+    max-width: 300px;
+    min-width: auto;
+    cursor: pointer;
+}

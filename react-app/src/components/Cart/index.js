@@ -16,6 +16,7 @@ const Cart = () => {
     const [shipping, setShipping] = useState('')
     const [validationErrors, setValidationErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false);
+    // const [quantChange, setQuantChange] = useState(false)
 
     useEffect(() => {
         const cart = localStorage.getItem('cart') ?
@@ -25,21 +26,20 @@ const Cart = () => {
     }, [])
 
     const changeCartQuantity = (e, product) => {
+        // setQuantChange(true)
         const cart = localStorage.getItem('cart') ?
             JSON.parse(localStorage.getItem('cart')) : []
 
         cart.forEach(item => {
             if (item.id === product.id) {
                 item.quantity = e.target.value
-                if (item.quantity === 5 || item.quantity === 1) {
-                    errors.push("Item must be 1-5 in quantity. Please remove if you no longer wish to purchase")
-                    setValidationErrors(errors)
-                    console.log(validationErrors, '@@@@@@')
-                    return
-                }
+                // if (item.quantity === 5 || item.quantity === 1) {
+                //     errors.push("Item must be 1-5 in quantity. Please remove if you no longer wish to purchase")
+                //     setValidationErrors(errors)
+                //     return
+                // }
             }
         })
-
         localStorage.setItem('cart', JSON.stringify(cart))
         dispatch(actionAddToCart(cart))
     }
@@ -53,7 +53,7 @@ const Cart = () => {
             errors.push("Shipping must be less than 250 characters")
         }
         setValidationErrors(errors)
-    }, [shipping, subtotal])
+    }, [shipping])
 
     if (!sessionUserId) return <Redirect to="/" />;
 
@@ -82,7 +82,6 @@ const Cart = () => {
             // return <Redirect to='/orders'
         }
     }
-
 
     let cartRender;
     cart.length ? cartRender = (
