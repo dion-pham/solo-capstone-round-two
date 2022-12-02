@@ -74,6 +74,9 @@
     /* putting items inside div so justify-content works */
 }
 
+.price-input {
+    width: 35%
+}
 
 .cart-subtotal {
     display: flex;
@@ -109,4 +112,27 @@
     min-width: auto;
     cursor: pointer;
 
+}
+
+.no-cart-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 75vh;
+}
+
+.cart-browse-link {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.cart-link-tag:hover {
+    color: #FFB627
+}
+
+.cart-logo-image {
+    height: fit-content;
+    width: fit-content;
 }

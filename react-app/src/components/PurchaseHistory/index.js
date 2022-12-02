@@ -29,7 +29,7 @@ const PurchaseHistory = () => {
 
     let accountOrderHistory;
     orderHistory.length ? accountOrderHistory = (
-        <table className="table-container">
+        <table className="order-table-container">
             <thead className='table-header'>
                 <tr>
                     <th scope='row'>
@@ -53,7 +53,7 @@ const PurchaseHistory = () => {
                     <th scope='row'>Total Price</th>
                 </tr>
             </thead>
-            <tbody className="table-body">
+            <tbody className="order-table-body">
                 {orderHistory.map((order) =>
                     <tr className="order-table-row">
                         <td className="table-column-1a">
@@ -96,7 +96,7 @@ const PurchaseHistory = () => {
                             <div>
                                 <div >
                                     <h3 className="order-history-price">
-                                    ${order.pretax_total_price}
+                                        ${order.pretax_total_price}
                                     </h3>
                                 </div>
                             </div>
@@ -107,9 +107,24 @@ const PurchaseHistory = () => {
         </table >
     ) :
         accountOrderHistory = (
-            <h1>
-                You have no orders, {sessionUser.first_name}! Browse around for something you'll like.
-            </h1>
+            <div className="no-order-history-container">
+                <h1>
+                    You have no orders, {sessionUser.first_name}!
+                </h1>
+                <div className="browse-link">
+                    <h1>
+                        <Link to={'/products'} className='browse-link-tag'>
+                            Browse
+                        </Link>
+                    </h1>
+                    <h1>
+                        around for something you'll like.
+                    </h1>
+                </div>
+                <div>
+                <img src={"https://i.imgur.com/tiAVkCW.png"} alt='logo' className="logo-image"></img>
+                </div>
+            </div>
         )
 
     return (

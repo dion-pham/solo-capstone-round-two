@@ -19,6 +19,15 @@
     /* bottom: 50rem; */
 }
 
+.signed-out-login-button {
+    background-color: black;
+    color: white;
+    min-height: 30px;
+    max-width: 300px;
+    min-width: auto;
+    cursor: pointer;
+}
+
 .login-button {
     padding: 20px 0 0 5px ;
 }
