@@ -49,7 +49,7 @@ const PurchaseHistory = () => {
                     </th>
                     <th scope='row'>Order #</th>
                     <th scope='row'>Item List</th>
-                    <th scope='row'>Shipping Address</th>
+                    <th scope='row'>Shipping Instructions</th>
                     <th scope='row'>Total Price</th>
                 </tr>
             </thead>

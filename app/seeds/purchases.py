@@ -5,12 +5,12 @@ def seed_purchases():
     demo_purchase_1= Purchase(
         user_id = 1,
         pretax_total_price = 176,
-        shipping_instructions = '7320 Melrose Ave, Los Angeles, CA 90046'
+        shipping_instructions = 'Please leave by the front door'
     )
     demo_purchase_2= Purchase(
         user_id = 1,
         pretax_total_price = 620,
-        shipping_instructions = '190 Bowery, New York, NY 10012'
+        shipping_instructions = 'Beware of dog'
     )
     db.session.add(demo_purchase_1)
     db.session.add(demo_purchase_2)
