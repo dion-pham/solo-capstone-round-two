@@ -4,7 +4,7 @@ from app.models import db, User, environment, SCHEMA
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        first_name='Dion', last_name='Pham', email='demo@aa.io', password='password')
+        first_name='Demo', last_name='User', email='demo@aa.io', password='password')
 
     db.session.add(demo)
     db.session.commit()
