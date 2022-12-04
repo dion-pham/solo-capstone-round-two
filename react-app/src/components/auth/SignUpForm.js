@@ -20,19 +20,19 @@ const SignUpForm = () => {
     if (firstName.length === 0) {
       errors.push("First name field is required")
     }
-    if (firstName.length > 50) {
+    if (firstName.length >= 50) {
       errors.push("First name field must be less than 50 characters")
     }
     if (lastName.length === 0) {
       errors.push("Last name field is required")
     }
-    if (lastName.length > 50) {
+    if (lastName.length >= 50) {
       errors.push("Last name field must be less than 50 characters")
     }
     if (email.length === 0) {
       errors.push("Email field is required")
     }
-    if (email.length > 50) {
+    if (email.length >= 50) {
       errors.push("Email field must be less than 50 characters")
     }
     // if (!email.includes('.') || !email.includes('@')) {
@@ -41,13 +41,13 @@ const SignUpForm = () => {
     if (password.length === 0) {
       errors.push("Password field is required")
     }
-    if (password.length > 50) {
+    if (password.length >= 50) {
       errors.push("Password field must be less than 50 characters")
     }
     if (repeatPassword.length === 0) {
       errors.push("Confirm password field is required")
     }
-    if (password.length > 50) {
+    if (password.length >= 50) {
       errors.push("Repeat password field must be less than 50 characters")
     }
     if (password !== repeatPassword) {

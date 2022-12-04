@@ -15,6 +15,11 @@ const Products = () => {
 
     return (
         <div className="splash-outer-container-flex">
+                <div className="splash-about">
+                    <h4>
+                        Welcome to aroundTwo! Look around for items to purchase.
+                    </h4>
+                </div>
             <div className="splash-inner-container-grid">
                 {products.map((product) =>
                     <div key={product.id} className='product-card'>
