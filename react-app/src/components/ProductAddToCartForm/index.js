@@ -16,11 +16,8 @@ const AddToCartForm = ({ targetProduct }) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         setAddToCart(true)
-        if (sessionUser) {
-            setAddToCart(true)
-            targetProduct.size = size
-            dispatch(addToCart(targetProduct))
-        }
+        targetProduct.size = size
+        dispatch(addToCart(targetProduct))
     }
 
     const handleSubmitNoSize = async (e) => {
