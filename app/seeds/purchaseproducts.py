@@ -20,9 +20,29 @@ def seed_purchaseproducts():
         quantity = 1,
         size = 'Medium'
     )
+    demo_purchaseproduct_4 = PurchaseProduct(
+        product_id = 18,
+        purchase_id = 2,
+        quantity = 1,
+        size = 'Medium'
+    )
+    demo_purchaseproduct_5 = PurchaseProduct(
+        product_id = 19,
+        purchase_id = 2,
+        quantity = 1,
+        size = 'Medium'
+    )
+    demo_purchaseproduct_6 = PurchaseProduct(
+        product_id = 24,
+        purchase_id = 2,
+        quantity = 1
+    )
     db.session.add(demo_purchaseproduct_1)
     db.session.add(demo_purchaseproduct_2)
     db.session.add(demo_purchaseproduct_3)
+    db.session.add(demo_purchaseproduct_4)
+    db.session.add(demo_purchaseproduct_5)
+    db.session.add(demo_purchaseproduct_6)
     db.session.commit()
 
 def undo_purchaseproducts():

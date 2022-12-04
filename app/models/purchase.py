@@ -27,7 +27,7 @@ class Purchase(db.Model):
     #                         back_populates='purchases',
     #                         lazy = False
     # )
-    purchase_join = db.relationship('PurchaseProduct', back_populates='purchases', lazy=False)
+    purchase_join = db.relationship('PurchaseProduct', back_populates='purchases', lazy=False, cascade='all,delete')
 
 
     def to_dict(self):
