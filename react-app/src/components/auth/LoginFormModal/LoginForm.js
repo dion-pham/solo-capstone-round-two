@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect, Link, useHistory } from 'react-router-dom';
 import { login } from '../../../store/session';
 import './LoginForm.css'
 
 
 const LoginForm = ({ showModal, setShowModal }) => {
   const dispatch = useDispatch();
+  const history = useHistory()
 
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
@@ -14,6 +15,10 @@ const LoginForm = ({ showModal, setShowModal }) => {
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
   const user = useSelector(state => state.session.user);
+
+  if (user) {
+    history.goBack()
+  }
 
   useEffect(() => {
     const errors = []
