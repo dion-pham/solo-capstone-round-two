@@ -10,14 +10,21 @@ const AddToCartForm = ({ targetProduct }) => {
     const sessionUser = useSelector(state => state.session.user)
 
     const [size, setSize] = useState('x-small')
-    const [addedToCart, setAddToCart] = useState(false)
+    const [addedToCart, setAddedToCart] = useState(false)
 
+    // if logged out and then logged in, set addedToCart to false such that no message is displayed
+    // until you click on checkout again
+    useEffect(() =>{
+        if (sessionUser) {
+            setAddedToCart(false)
+        }
+    }, [sessionUser])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        setAddToCart(true)
+        setAddedToCart(true)
         if (sessionUser) {
-            setAddToCart(true)
+            setAddedToCart(true)
             targetProduct.size = size
             dispatch(addToCart(targetProduct))
         }
@@ -25,8 +32,11 @@ const AddToCartForm = ({ targetProduct }) => {
 
     const handleSubmitNoSize = async (e) => {
         e.preventDefault()
-        setAddToCart(true)
-        dispatch(addToCart(targetProduct))
+        setAddedToCart(true)
+        if (sessionUser) {
+            setAddedToCart(true)
+            dispatch(addToCart(targetProduct))
+        }
     }
 
     let addtoCartMessage;
