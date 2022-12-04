@@ -204,7 +204,7 @@ const Cart = () => {
                         className="cart-subtotal-form-input"
                         type="text"
                         placeholder='Shipping
-                        Address'
+                        Instructions'
                         value={shipping}
                         onChange={(e) => setShipping(e.target.value)} />
                     <button className="checkout-button">
