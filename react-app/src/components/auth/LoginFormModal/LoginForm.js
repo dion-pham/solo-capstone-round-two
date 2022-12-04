@@ -49,9 +49,7 @@ const LoginForm = ({ showModal, setShowModal }) => {
     setPassword(e.target.value);
   };
 
-  // if (user) {
-  //   return <Redirect to='/' />;
-  // }
+
 
   return (
     <div className='login-form'>

@@ -33,16 +33,25 @@ const SignUpForm = () => {
       errors.push("Email field is required")
     }
     if (email.length > 50) {
-      errors.push("Email name field must be less than 50 characters")
+      errors.push("Email field must be less than 50 characters")
     }
-    if (!email.includes('.') || !email.includes('@')) {
-      errors.push('Email must be valid')
-    }
+    // if (!email.includes('.') || !email.includes('@')) {
+    //   errors.push('Email must be valid')
+    // }
     if (password.length === 0) {
       errors.push("Password field is required")
     }
+    if (password.length > 50) {
+      errors.push("Password field must be less than 50 characters")
+    }
     if (repeatPassword.length === 0) {
       errors.push("Confirm password field is required")
+    }
+    if (password.length > 50) {
+      errors.push("Repeat password field must be less than 50 characters")
+    }
+    if (password !== repeatPassword) {
+      errors.push('Passwords must match!')
     }
     setErrors(errors)
   }, [firstName, lastName, email, password, repeatPassword])
@@ -50,8 +59,8 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     setHasSubmitted(true)
-    resetErrors()
     if (password === repeatPassword) {
+      resetErrors()
       const data = await dispatch(signUp(firstName, lastName, email, password));
       if (data) {
         setErrors(data)

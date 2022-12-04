@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items:flex-start;
 }
 
 .edit-shipping-input-and-button {
@@ -17,9 +17,10 @@
     color: black;
     padding: 0;
 }
-/* .edit-shipping-form  {
-    height: 44px;
-} */
+
+.shipping-error-list-item {
+    gap: 5px;
+}
 
 .change-shipping-button {
     background-color: black;
@@ -36,7 +37,7 @@
 .refund-button {
     background-color: black;
     color: white;
-    margin: 5px 7px 0 0;
+    margin: 5px 0 0 0;
     border: 0;
     padding: 0 0 0 0;
     min-height: 44px;

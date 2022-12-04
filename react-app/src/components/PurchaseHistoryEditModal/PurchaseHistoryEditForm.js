@@ -63,12 +63,14 @@ const PurchaseHistoryEditForm = ({ order }) => {
             <div>
                 {hasSubmitted && validationErrors.length > 0 && (
                     <div className='edit-shipping-errors'>
-                        <div>
+                        {/* <div>
                             The following errors were found:
-                        </div>
+                        </div> */}
                         <ul>
                             {validationErrors.map((error) => (
-                                <li key={error}> <i className='fa fa-exclamation-circle' /> {error}</li>
+                                <li key={error}
+                                    className='shipping-error-list-item'
+                                > <i className='fa fa-exclamation-circle' /> {error}</li>
                             ))}
                         </ul>
                     </div>
@@ -88,12 +90,14 @@ const PurchaseHistoryEditForm = ({ order }) => {
                 </form>
             </div>
             <div>
-                <button className='refund-button' onClick={() => {
-                    deletePurchase()
-                }}
-                >
-                    Refund
-                </button>
+                <div>
+                    <button className='refund-button' onClick={() => {
+                        deletePurchase()
+                    }}
+                    >
+                        Refund
+                    </button>
+                </div>
             </div>
         </div>
     )
