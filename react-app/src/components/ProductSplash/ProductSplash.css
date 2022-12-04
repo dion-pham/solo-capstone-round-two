@@ -1,5 +1,14 @@
 .splash-outer-container-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
     margin-bottom: 100px;
+}
+
+.splash-outer-container-flex h4 {
+    font-style: italic;
+    margin-top: 0;
 }
 
 .splash-inner-container-grid {
@@ -7,13 +16,12 @@
     justify-content: center;
     align-items: center;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    /* fix maybe. only want 4  */
     place-items: center;
     width: 90%;
     max-width: 2500px;
     height: 100%;
     grid-gap: 40px 45px;
-    padding: 5rem 5rem 5rem 5rem
+    padding: 0 5rem 5rem 5rem
 }
 
 .product-card {
