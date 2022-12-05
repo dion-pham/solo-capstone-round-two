@@ -58,9 +58,9 @@ const Cart = () => {
 
         cart.map((item) => {
             if (item.quantity > 5) {
-                errors.push("You can not buy more than five!")
+                errors.push("Limit 5 of each item. ")
             } else if (item.quantity <1 ) {
-                errors.push("You must buy at least 1! Remove item if you no longer wish to purchase.")
+                errors.push("Must be at least 1 of each item. Click 'Remove' if you no longer want an item.")
             }
         })
 
@@ -192,7 +192,7 @@ const Cart = () => {
                 ${subtotal}.00
             </h4>
             <div className="cart-validation-errors">
-                {validationErrors.length > 0 && (
+                {hasSubmitted && validationErrors.length > 0 && (
                     <div>
                         <ul>
                             {validationErrors.map((error) => (
