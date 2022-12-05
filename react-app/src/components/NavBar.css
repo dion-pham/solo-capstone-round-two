@@ -10,15 +10,17 @@
 .nav-bar-ul {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content:space-between;
     list-style: none;
 
 }
 
+
 .nav-bar-logo {
-    width: 75%;
+    width: 85%;
     height: 100%;
     cursor: pointer;
+    margin-left: 40px;
 }
 
 .nav-bar-right {

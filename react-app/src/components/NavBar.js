@@ -35,7 +35,7 @@ const NavBar = () => {
               </NavLink>
             </li>
           </div>
-          <div>
+          <div className='logo-container-div'>
             <Link to={'/products'}>
               <img src={"https://i.imgur.com/3vjboFc.png"} alt="Product's image" className='nav-bar-logo'></img>
             </Link>
@@ -80,7 +80,7 @@ const NavBar = () => {
               </NavLink>
             </li>
           </div>
-          <div>
+          <div className='logo-container-div'>
             <Link to={'/products'}>
               <img src={"https://i.imgur.com/3vjboFc.png"} alt="Product's image" className='nav-bar-logo'></img>
             </Link>

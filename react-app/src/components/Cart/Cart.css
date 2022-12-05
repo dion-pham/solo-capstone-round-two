@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 100px;
     margin-bottom: 110px;
 }
 
@@ -130,7 +131,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 75vh;
+    height: 60vh;
 }
 
 .cart-browse-link {
