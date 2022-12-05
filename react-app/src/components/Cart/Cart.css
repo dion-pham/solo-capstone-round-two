@@ -95,6 +95,7 @@
 
 .cart-validation-errors ul {
     padding: 0;
+    width: 250px;
 }
 
 .cart-subtotal-form {

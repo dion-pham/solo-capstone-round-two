@@ -12,7 +12,10 @@ const Cart = () => {
     const { cart } = useSelector(state => state?.cart)
     const sessionUser = useSelector(state => state.session.user)
     const sessionUserId = useSelector(state => state.session.user.id)
-    const subtotal = cart.reduce((sum, product) => sum + (product.quantity * product.price), 0)
+    let subtotal = cart.reduce((sum, product) => sum + (product.quantity * product.price), 0)
+    if (subtotal < 0) {
+        subtotal = 0
+    }
 
     const [shipping, setShipping] = useState('')
     const [validationErrors, setValidationErrors] = useState([])

@@ -63,6 +63,8 @@ input[type=radio]:checked + .label-radio{
 
 .cart-link:link {
     color: black;
+    text-decoration: underline;
+
 }
 
 .cart-link:visited {

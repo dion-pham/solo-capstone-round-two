@@ -35,9 +35,6 @@ const SignUpForm = () => {
     if (email.length >= 50) {
       errors.push("Email field must be less than 50 characters")
     }
-    // if (!email.includes('.') || !email.includes('@')) {
-    //   errors.push('Email must be valid')
-    // }
     if (password.length === 0) {
       errors.push("Password field is required")
     }
