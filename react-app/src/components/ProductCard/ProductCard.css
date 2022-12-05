@@ -14,7 +14,7 @@
     position: sticky;
     max-height: 10vh;
     padding: 0 0 0 10px;
-    top: 5rem;
+    top: 6rem;
     gap: 10px
 }
 
@@ -66,7 +66,7 @@
     position: sticky;
     max-height: 10vh;
     gap: 2rem;
-    top: 5rem;
+    top: 6rem;
 }
 
 .payment-h4 {
