@@ -156,7 +156,16 @@ const Cart = () => {
                         </td>
                         <td className="table-column-5">
                             <div>
-                                ${product.price * product.quantity}.00
+                                {(product.price * product.quantity) < 0 && (
+                                    <div>
+                                        $00.00
+                                    </div>
+                                ) }
+                                   {(product.price * product.quantity) > 0 && (
+                                    <div>
+                                        ${product.price * product.quantity}.00
+                                    </div>
+                                ) }
                             </div>
                         </td>
                     </tr>
