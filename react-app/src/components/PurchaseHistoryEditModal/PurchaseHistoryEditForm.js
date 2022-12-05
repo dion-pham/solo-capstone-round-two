@@ -23,7 +23,7 @@ const PurchaseHistoryEditForm = ({ order }) => {
     useEffect(() => {
         const errors = []
         if (shipping?.length === 0) {
-            errors.push("Shipping field is required")
+            errors.push("Shipping required!")
         }
         if (shipping?.length > 100) {
             errors.push("Shipping must be less than 100 characters")
@@ -63,9 +63,6 @@ const PurchaseHistoryEditForm = ({ order }) => {
             <div>
                 {hasSubmitted && validationErrors.length > 0 && (
                     <div className='edit-shipping-errors'>
-                        {/* <div>
-                            The following errors were found:
-                        </div> */}
                         <ul>
                             {validationErrors.map((error) => (
                                 <li key={error}

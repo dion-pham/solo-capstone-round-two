@@ -84,7 +84,7 @@ const PurchaseHistory = () => {
                         </td>
                         <td className="table-column-4">
                             <div className="order-column-4">
-                                <div>
+                                <div id='order-column-4-shipping-instructions'>
                                     "{order.shipping_instructions}"
                                 </div>
                                 <div>

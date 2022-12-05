@@ -188,10 +188,9 @@ const Cart = () => {
                 Subtotal
                 ${subtotal}.00
             </h4>
-            <div>
+            <div className="cart-validation-errors">
                 {validationErrors.length > 0 && (
                     <div>
-                        The following errors were found:
                         <ul>
                             {validationErrors.map((error) => (
                                 <li key={error}><i className='fa fa-exclamation-circle' />  {error}</li>
