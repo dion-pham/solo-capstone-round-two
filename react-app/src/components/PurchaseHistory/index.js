@@ -12,7 +12,6 @@ const PurchaseHistory = () => {
     const sessionUser = useSelector(state => state.session.user)
     const sessionUserId = useSelector(state => state.session.user.id)
 
-
     useEffect(() => {
         dispatch(fetchAllProducts())
         dispatch(fetchAllUserPurchases(sessionUserId))
@@ -54,7 +53,7 @@ const PurchaseHistory = () => {
                 </tr>
             </thead>
             <tbody className="order-table-body">
-                {orderHistory.map((order) =>
+                {orderHistory.map((order, orderId = 0) =>
                     <tr className="order-table-row">
                         <td className="table-column-1a">
                             <div>
@@ -64,7 +63,7 @@ const PurchaseHistory = () => {
                         <td className="table-column-2a">
                             <div>
                                 <div>
-                                    Order # {order.id}
+                                    Order # {orderId+1}
                                 </div>
                             </div>
                         </td>
