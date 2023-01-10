@@ -4,6 +4,7 @@ import { Link, Redirect } from "react-router-dom";
 import { fetchAllProducts } from "../../store/product";
 import { fetchAllUserPurchases } from "../../store/purchase";
 import PurchaseHistoryEditForm from "../PurchaseHistoryEditModal/PurchaseHistoryEditForm";
+import MapContainer from "../Maps";
 import './PurchaseHistory.css'
 import '../Cart/Cart.css'
 
@@ -131,6 +132,9 @@ const PurchaseHistory = () => {
             <h1 className="cart-title">Order History</h1>
             <div className="cart-render">
                 {accountOrderHistory}
+            </div>
+            <div>
+                <MapContainer/>
             </div>
         </div>
     )
