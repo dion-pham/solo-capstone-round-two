@@ -68,7 +68,7 @@ export const thunkAddAddress = (user_id, address1, address2, city, state, countr
         return ['An error occurred. Please try again.']
     }
 }
-thunkEditAddress
+
 // add an edit thunk!!!
 export const thunkEditAddress = (addressId, user_id, address1, address2, city, state, country, zip_code, phone) => async (dispatch) => {
     const response = await fetch(`/api/address/${addressId}`, {
