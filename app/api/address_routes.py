@@ -1,6 +1,8 @@
 from flask import Blueprint, jsonify, request
+from .auth_routes import validation_errors_to_error_messages
 from app.models import User, db
 from app.models.address import Address
+from app.forms.address_form import AddressForm
 from flask_login import current_user, login_required
 
 address_routes = Blueprint('address', __name__)
@@ -23,20 +25,23 @@ def fetch_user_address(id):
 @address_routes.route('', methods=['POST'])
 @login_required
 def create_address():
-    data = request.get_json()
-    address = Address(
-        user_id=data['user_id'],
-        address1=data['address1'],
-        address2=data['address2'],
-        city=data['city'],
-        state=data['state'],
-        country=data['country'],
-        zip_code=data['zip_code'],
-        phone=data['phone'])
-    db.session.add(address)
-    db.session.commit()
-
-    return address.to_dict()
+    form = AddressForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        address = Address(
+            user_id=form.data['user_id'],
+            address1=form.data['address1'],
+            address2=form.data['address2'],
+            city=form.data['city'],
+            state=form.data['state'],
+            country=form.data['country'],
+            zip_code=form.data['zip_code'],
+            phone=form.data['phone'])
+        db.session.add(address)
+        db.session.commit()
+        return address.to_dict()
+    print(form.data)
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 @address_routes.route('/<int:id>', methods=['PUT'])
@@ -55,6 +60,7 @@ def update_address(id):
     db.session.commit()
 
     return editted_address.to_dict()
+
 
 @address_routes.route('/<int:id>', methods=['DELETE'])
 @login_required

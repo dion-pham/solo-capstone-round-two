@@ -30,10 +30,13 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
     def to_dict(self):
+        data = {'address': ''}
+        if len(self.address):
+            data['address'] = self.address[0].to_dict()
         return {
             'id': self.id,
             'first_name': self.first_name,
             'last_name': self.last_name,
             'email': self.email,
-            'address': self.address.to_dict()
+            'address': data
         }

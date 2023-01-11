@@ -3,7 +3,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 65vh;
+    height: 100vh;
+    margin-bottom: 100px;
 
 }
 
@@ -13,7 +14,13 @@
     font-size: 48px;
 }
 
+/* .sign-up-errors {
+    margin: 20px 0 0 0;
+} */
 
+#create-account-heading{
+    /* margin-top: 50px; */
+}
 .sign-up-form input{
     margin: 10px 15px 0 15px;
     padding-left: 10px;
