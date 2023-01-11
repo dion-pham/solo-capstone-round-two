@@ -4,6 +4,7 @@ import cartReducer from './cart';
 import productReducer from './product';
 import purchaseReducer from './purchase';
 import mapsReducer from './maps';
+import addressReducer from './address';
 import session from './session'
 
 const rootReducer = combineReducers({
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
   products: productReducer,
   purchases: purchaseReducer,
   cart: cartReducer,
-  maps: mapsReducer
+  maps: mapsReducer,
+  address: addressReducer,
 });
 
 

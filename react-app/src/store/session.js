@@ -13,6 +13,23 @@ const removeUser = () => ({
 
 const initialState = { user: null };
 
+export const fetchUser = () => async (dispatch) => {
+  const response = await fetch('/api/auth/user', {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+  if (response.ok) {
+    const data = await response.json();
+    if (data.errors) {
+      return;
+    }
+
+    dispatch(setUser(data));
+  }
+}
+
+
 export const authenticate = () => async (dispatch) => {
   const response = await fetch('/api/auth/', {
     headers: {

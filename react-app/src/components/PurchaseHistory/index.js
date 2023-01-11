@@ -7,6 +7,8 @@ import PurchaseHistoryEditForm from "../PurchaseHistoryEditModal/PurchaseHistory
 import MapContainer from "../Maps";
 import './PurchaseHistory.css'
 import '../Cart/Cart.css'
+import { fetchUser } from "../../store/session";
+import { thunkLoadAddress } from "../../store/address";
 
 const PurchaseHistory = () => {
     const dispatch = useDispatch()
@@ -14,6 +16,7 @@ const PurchaseHistory = () => {
     const sessionUserId = useSelector(state => state.session.user.id)
 
     useEffect(() => {
+        dispatch(thunkLoadAddress(sessionUserId))
         dispatch(fetchAllProducts())
         dispatch(fetchAllUserPurchases(sessionUserId))
     }, [])

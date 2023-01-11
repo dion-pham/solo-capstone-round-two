@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, Link } from 'react-router-dom';
+import { thunkAddAddress } from '../../store/address';
 import { signUp } from '../../store/session';
 import './SignUpForm.css'
 
@@ -97,9 +98,6 @@ const SignUpForm = () => {
     })
     if (response.ok) {
       const data = await response.json();
-      if (data) {
-        console.log(data, 'this is data')
-      }
       return null;
     } else if (response.status < 500) {
       const data = await response.json();
@@ -121,14 +119,23 @@ const SignUpForm = () => {
       if (Array.isArray(data)) {
         setErrors(data)
       } else if (data) {
-        signUpAddress(data.id,
+        dispatch(thunkAddAddress(data.id,
           address1,
           address2,
           city,
           state,
           country,
           zip_code,
-          phone)
+          phone))
+          return null
+        // signUpAddress(data.id,
+        //   address1,
+        //   address2,
+        //   city,
+        //   state,
+        //   country,
+        //   zip_code,
+        //   phone)
       }
     }
   };
