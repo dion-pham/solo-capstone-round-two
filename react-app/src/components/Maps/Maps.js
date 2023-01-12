@@ -1,8 +1,9 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './Maps.css'
 import AddressEditForm from '../AddressEditForm';
+import { thunkLoadAddress } from '../../store/address';
 
 const containerStyle = {
     width: '50vw',
@@ -31,13 +32,19 @@ const containerStyle = {
 
 const Maps = ({ apiKey }) => {
     const [center, setCenter] = useState({ lat: 33.899510, lng: -118.323690, })
+    const dispatch = useDispatch()
 
     // const { isLoaded } = useJsApiLoader({
     //     id: 'google-map-script',
     //     googleMapsApiKey: apiKey,
     // });
 
+    const sessionUserId = useSelector((state) => state.session.user.id)
     const addressState = useSelector((state) => Object.values(state.address.userAddress))
+
+    useEffect(() => {
+        dispatch(thunkLoadAddress(sessionUserId))
+    }, [] )
 
     // getLatLng(`${addressState[0]?.address1}, ${addressState[0]?.city}, ${addressState[0]?.state}`, apiKey)
     //     .then(latLng => {
@@ -57,10 +64,10 @@ const Maps = ({ apiKey }) => {
     //         .catch(error => console.error(error));
     // }, [addressState[0]?.address1]);
 
-    // <>
-    {/* {!isLoaded && ( */ }
-    {/* </> */ }
+
     return (
+        // <>
+    // {!isLoaded && ( */
         <div className='maps-container' >
             <div>
                 <h1>
@@ -70,17 +77,16 @@ const Maps = ({ apiKey }) => {
                     Address: {addressState[0]?.address1}, {addressState[0]?.city}, {addressState[0]?.state}
                 </div>
                 {/* make it so that if button is clicked, then you can edit the address form */}
-                <AddressEditForm />
+                <AddressEditForm/>
             </div>
             {/* <div>
                         <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10}>
                             <Marker position={center} />
                         </GoogleMap>
                     </div> */}
-        </div >
-
-
-
+        </div>
+          //  )
+    //  </>
     );
 };
 

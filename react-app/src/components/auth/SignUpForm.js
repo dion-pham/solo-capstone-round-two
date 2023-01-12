@@ -10,7 +10,6 @@ const SignUpForm = () => {
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
   const [address1, setAddress1] = useState('');
-  const [address2, setAddress2] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
   const [country, setCountry] = useState('');
@@ -73,13 +72,10 @@ const SignUpForm = () => {
     if (zip_code.length === 0) {
       errors.push("Zip Code field is required")
     }
-    if (phone.length === 0) {
-      errors.push("Phone field is required")
-    }
     setErrors(errors)
-  }, [firstName, lastName, email, password, repeatPassword, address1, address2, city, state, country, zip_code, phone])
+  }, [firstName, lastName, email, password, repeatPassword, address1, city, state, country, zip_code])
 
-  const signUpAddress = async (user_id, address1, address2, city, state, country, zip_code, phone) => {
+  const signUpAddress = async (user_id, address1, city, state, country, zip_code, phone) => {
     const response = await fetch('/api/address', {
       method: 'POST',
       headers: {
@@ -88,7 +84,6 @@ const SignUpForm = () => {
       body: JSON.stringify({
         user_id,
         address1,
-        address2,
         city,
         state,
         country,
@@ -121,12 +116,11 @@ const SignUpForm = () => {
       } else if (data) {
         dispatch(thunkAddAddress(data.id,
           address1,
-          address2,
           city,
           state,
           country,
           zip_code,
-          phone))
+          ))
           return null
         // signUpAddress(data.id,
         //   address1,
@@ -223,15 +217,6 @@ const SignUpForm = () => {
         <div>
           <input
             type='text'
-            placeholder='Address 2'
-            name='address2'
-            onChange={(e) => setAddress2(e.target.value)}
-            value={address2}
-          />
-        </div>
-        <div>
-          <input
-            type='text'
             placeholder='City'
             name='city'
             onChange={(e) => setCity(e.target.value)}
@@ -265,7 +250,7 @@ const SignUpForm = () => {
             value={zip_code}
           />
         </div>
-        <div>
+        {/* <div>
           <input
             type='text'
             placeholder='Phone #'
@@ -273,7 +258,7 @@ const SignUpForm = () => {
             onChange={(e) => setPhone(e.target.value)}
             value={phone}
           />
-        </div>
+        </div> */}
         <div>
           <input
             type='password'

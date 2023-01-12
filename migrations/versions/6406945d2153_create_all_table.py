@@ -50,12 +50,10 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('address1', sa.String(length=100), nullable=False),
-    sa.Column('address2', sa.String(length=100), nullable=False),
     sa.Column('city', sa.String(length=75), nullable=False),
     sa.Column('state', sa.String(length=75), nullable=False),
     sa.Column('country', sa.String(length=75), nullable=False),
-    sa.Column('zip_code', sa.Integer(), nullable=False),
-    sa.Column('phone', sa.String(length=25), nullable=False),
+    sa.Column('zip_code', sa.String(length=10), nullable=False),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

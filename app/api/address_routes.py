@@ -31,35 +31,34 @@ def create_address():
         address = Address(
             user_id=form.data['user_id'],
             address1=form.data['address1'],
-            address2=form.data['address2'],
             city=form.data['city'],
             state=form.data['state'],
             country=form.data['country'],
-            zip_code=form.data['zip_code'],
-            phone=form.data['phone'])
+            zip_code=form.data['zip_code'])
         db.session.add(address)
         db.session.commit()
         return address.to_dict()
-    print(form.data)
+
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 @address_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def update_address(id):
-    editted_address = Address.query.filter_by(id=id).first()
-    data = request.get_json()
-    editted_address.user_id = data['user_id'],
-    editted_address.address1 = data['address1'],
-    editted_address.address2 = data['address2'],
-    editted_address.city = data['city'],
-    editted_address.state = data['state'],
-    editted_address.country = data['country'],
-    editted_address.zip_code = data['zip_code'],
-    editted_address. phone = data['phone']
-    db.session.commit()
+    editted_address = Address.query.get_or_404(id)
+    form = AddressForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        data = form.data
+        editted_address.address1 = data['address1']
+        editted_address.city = data['city']
+        editted_address.state = data['state']
+        editted_address.country = data['country']
+        editted_address.zip_code = data['zip_code']
 
-    return editted_address.to_dict()
+        db.session.commit()
+        return editted_address.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 @address_routes.route('/<int:id>', methods=['DELETE'])

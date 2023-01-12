@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, Link, useHistory } from 'react-router-dom';
-import { thunkAddAddress, thunkEditAddress } from '../../store/address';
+import { thunkAddAddress, thunkEditAddress, thunkLoadAddress } from '../../store/address';
 import './AddressEditForm.css'
 
 const AddressEditForm = () => {
     const history = useHistory()
     const dispatch = useDispatch();
 
+    const sessionUserId = useSelector((state) => state.session.user.id)
     const addressState = useSelector((state) => Object.values(state.address.userAddress))
+    // console.log(addressState, 'this is address state changing')
+
 
     const [address1, setAddress1] = useState(addressState[0]?.address1 ? addressState[0]?.address1 : '');
-    const [address2, setAddress2] = useState((addressState[0]?.address2).split('').length ? '' : addressState[0]?.address2 );
     const [city, setCity] = useState(addressState[0]?.city ? addressState[0]?.city : '');
     const [state, setState] = useState(addressState[0]?.state ? addressState[0]?.state : '');
     const [country, setCountry] = useState(addressState[0]?.country ? addressState[0]?.country : '');
     const [zip_code, setZip_Code] = useState(addressState[0]?.zip_code ? addressState[0]?.zip_code : '');
-    const [phone, setPhone] = useState(addressState[0]?.phone ? addressState[0]?.phone : '');
     const [errors, setErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
-
 
     useEffect(() => {
         const errors = []
@@ -39,22 +39,27 @@ const AddressEditForm = () => {
             errors.push("Zip Code field is required")
         }
         setErrors(errors)
-    }, [address1, address2, city, state, country, zip_code])
+    }, [address1, city, state, country, zip_code])
 
     const editShipping = async (e) => {
         e.preventDefault()
         setHasSubmitted(true)
         if (errors.length) return alert('Cannot submit')
 
-        const payload = {
-            address1, address2, city, state, country, zip_code, phone
-        };
-
-        let edittedAddress = await dispatch(thunkEditAddress(addressState.id, payload))
+        let edittedAddress = await dispatch(thunkEditAddress(
+            addressState[0].id,
+            // sessionUserId,
+            address1,
+            city,
+            state,
+            country,
+            zip_code
+            ))
         if (edittedAddress) {
             history.push(`/orders`);
             setErrors([]);
             setHasSubmitted(false);
+            dispatch(thunkLoadAddress(sessionUserId))
         }
 
     }
@@ -81,15 +86,6 @@ const AddressEditForm = () => {
                         name='address1'
                         onChange={(e) => setAddress1(e.target.value)}
                         value={address1}
-                    />
-                </div>
-                <div>
-                    <input
-                        type='text'
-                        placeholder='Address 2'
-                        name='address2'
-                        onChange={(e) => setAddress2(e.target.value)}
-                        value={address2}
                     />
                 </div>
                 <div>

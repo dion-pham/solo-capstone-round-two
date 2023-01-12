@@ -139,7 +139,7 @@ const PurchaseHistory = () => {
             </div>
             <div>
                 <Maps/>
-                {/* change back to maps container */}
+                {/* change back to maps container once you fix the api */}
             </div>
         </div>
     )

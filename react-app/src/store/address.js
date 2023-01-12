@@ -38,7 +38,7 @@ export const thunkLoadAddress = (id) => async (dispatch) => {
     }
 }
 
-export const thunkAddAddress = (user_id, address1, address2, city, state, country, zip_code, phone) => async (dispatch) => {
+export const thunkAddAddress = (user_id, address1, city, state, country, zip_code) => async (dispatch) => {
     const response = await fetch('/api/address', {
         method: 'POST',
         headers: {
@@ -47,12 +47,10 @@ export const thunkAddAddress = (user_id, address1, address2, city, state, countr
         body: JSON.stringify({
             user_id,
             address1,
-            address2,
             city,
             state,
             country,
-            zip_code,
-            phone
+            zip_code
         }),
     })
     if (response.ok) {
@@ -70,16 +68,22 @@ export const thunkAddAddress = (user_id, address1, address2, city, state, countr
 }
 
 // add an edit thunk!!!
-export const thunkEditAddress = (addressId,payload) => async (dispatch) => {
+export const thunkEditAddress = (addressId, address1, city, state, country, zip_code) => async (dispatch) => {
     const response = await fetch(`/api/address/${addressId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            payload
+            // user_id,
+            address1,
+            city,
+            state,
+            country,
+            zip_code
         }),
     })
+    console.log(response, 'this is response')
     if (response.ok) {
         const edittedAddress = await response.json();
         dispatch(actionAddAddress(edittedAddress))
@@ -96,20 +100,20 @@ export const thunkEditAddress = (addressId,payload) => async (dispatch) => {
 
 
 
-    // reducer
-    const initialState = { userAddress: {} }
+// reducer
+const initialState = { userAddress: {} }
 
-    const addressReducer = (state = initialState, action) => {
-        let addressStateObj = { ...state }
-        switch (action.type) {
-            case ADD_ADDRESS:
-                addressStateObj.userAddress[action.address.id] = action.address
-            case LOAD_ADDRESS:
-                addressStateObj.userAddress = action.address
-                return addressStateObj
-            default:
-                return state
-        }
+const addressReducer = (state = initialState, action) => {
+    let addressStateObj = { ...state }
+    switch (action.type) {
+        case ADD_ADDRESS:
+            addressStateObj.userAddress[action.address.id] = action.address
+        case LOAD_ADDRESS:
+            addressStateObj.userAddress = action.address
+            return addressStateObj
+        default:
+            return state
     }
+}
 
-    export default addressReducer
+export default addressReducer
