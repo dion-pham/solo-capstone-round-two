@@ -26,6 +26,7 @@ class Address(db.Model):
             'address1': self.address1,
             'address2': self.address2,
             'city': self.city,
+            'state': self.state,
             'country': self.country,
             'zip_code': self.zip_code,
             'phone': self.phone

@@ -62,7 +62,7 @@ const SignUpForm = () => {
       errors.push("Address field is required")
     }
     if (city.length === 0) {
-      errors.push("Cityfield is required")
+      errors.push("City field is required")
     }
     if (state.length === 0) {
       errors.push("State field is required")

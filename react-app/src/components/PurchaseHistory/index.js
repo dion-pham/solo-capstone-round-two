@@ -9,6 +9,7 @@ import './PurchaseHistory.css'
 import '../Cart/Cart.css'
 import { fetchUser } from "../../store/session";
 import { thunkLoadAddress } from "../../store/address";
+import Maps from "../Maps/Maps";
 
 const PurchaseHistory = () => {
     const dispatch = useDispatch()
@@ -137,7 +138,8 @@ const PurchaseHistory = () => {
                 {accountOrderHistory}
             </div>
             <div>
-                <MapContainer/>
+                <Maps/>
+                {/* change back to maps container */}
             </div>
         </div>
     )
