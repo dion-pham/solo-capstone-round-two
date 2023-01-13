@@ -39,12 +39,11 @@ const Maps = ({ apiKey }) => {
     //     googleMapsApiKey: apiKey,
     // });
 
-    const sessionUserId = useSelector((state) => state.session.user.id)
     const addressState = useSelector((state) => Object.values(state.address.userAddress))
 
-    useEffect(() => {
-        dispatch(thunkLoadAddress(sessionUserId))
-    }, [] )
+    // useEffect(() => {
+    //     dispatch(thunkLoadAddress(sessionUserId))
+    // }, [] )
 
     // getLatLng(`${addressState[0]?.address1}, ${addressState[0]?.city}, ${addressState[0]?.state}`, apiKey)
     //     .then(latLng => {
@@ -69,7 +68,7 @@ const Maps = ({ apiKey }) => {
         // <>
     // {!isLoaded && ( */
         <div className='maps-container' >
-            <div>
+            <div className='maps-left-side-address'>
                 <h1>
                     Your orders will be shipped to:
                 </h1>

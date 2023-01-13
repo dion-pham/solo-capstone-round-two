@@ -81,6 +81,18 @@ def upgrade():
     )
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
+    op.create_table('reviews',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=False),
+    sa.Column('product_id', sa.Integer(), nullable=False),
+    sa.Column('message', sa.String(length=255), nullable=False),
+    sa.Column('rating', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['product_id'], ['products.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
     # ### end Alembic commands ###
 
 
@@ -91,4 +103,5 @@ def downgrade():
     op.drop_table('addresses')
     op.drop_table('users')
     op.drop_table('products')
+    op.drop_table('reviews')
     # ### end Alembic commands ###

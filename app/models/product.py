@@ -29,6 +29,7 @@ class Product(db.Model):
     #                         lazy=False
     # )
     product_join = db.relationship('PurchaseProduct', back_populates='products')
+    reviews = db.relationship('Review', back_populates='product')
 
     def to_dict(self):
         return {
