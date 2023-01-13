@@ -1,20 +1,20 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField
 from wtforms.validators import DataRequired, Email, ValidationError, Length
-from app.models import User
 
 
 class AddressForm(FlaskForm):
 
-    user_id = StringField('user_id')
+    user_id = IntegerField('user_id', validators=[
+        DataRequired()])
     address1 = StringField('address1', validators=[
-                        DataRequired(message='Address is required')])
+        DataRequired(message='Address is required')])
     city = StringField('city', validators=[
-                        DataRequired(message='City is required')])
+        DataRequired(message='City is required')])
     state = StringField('state', validators=[
                         DataRequired(message='State is required')])
     country = StringField('country', validators=[
-                        DataRequired(message='Country is required')])
+        DataRequired(message='Country is required')])
     zip_code = StringField('zip_code', validators=[
-                        DataRequired(message='Zip Code is required')
+        DataRequired(message='Zip Code is required')
     ])

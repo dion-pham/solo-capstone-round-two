@@ -7,7 +7,7 @@ from app.config import Config
 key = Config.googleMapsAPIKey
 
 
-map_routes = Blueprint('map', __name__)
+map_routes = Blueprint('maps', __name__)
 
 @map_routes.route('/key', methods=['POST'])
 def fetch_api_key():
