@@ -23,7 +23,6 @@ const ReviewForm = () => {
 
     const sessionUserId = useSelector((state) => state?.session?.user?.id)
     let { productId } = useParams()
-    const allProductsArray = useSelector((state) => Object.values(state.products.allProducts))
     const allReviewsArray = useSelector((state) => Object.values(state.reviews.userReviews))
     const sessionUserReview = allReviewsArray?.find(review => review?.user_id === sessionUserId)
 
@@ -130,6 +129,7 @@ const ReviewForm = () => {
                     <input
                         type='number'
                         placeholder='Rating'
+                        min='0'
                         name='rating'
                         onChange={(e) => setRating(e.target.value)}
                         value={rating}

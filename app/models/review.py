@@ -1,4 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+import datetime
+import json
 
 class Review(db.Model):
     __tablename__ = 'reviews'
@@ -13,6 +15,8 @@ class Review(db.Model):
         add_prefix_for_prod('products.id')), nullable=False)
     message = db.Column(db.String(255), nullable=False)
     rating = db.Column(db.Integer, nullable=False)
+    createdAt = db.Column(db.DateTime, default=datetime.datetime.now)
+    updatedAt = db.Column(db.DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now)
 
     product = db.relationship('Product', back_populates='reviews')
     user = db.relationship('User', back_populates='reviews')
@@ -24,5 +28,7 @@ class Review(db.Model):
             'product_id': self.product_id,
             'message': self.message,
             'rating': self.rating,
+            'createdAt': json.dumps(self.createdAt, default=str),
+            'updatedAt': json.dumps(self.updatedAt, default=str),
             'user': self.user.to_dict()
         }
