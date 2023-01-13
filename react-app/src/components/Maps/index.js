@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { getKey } from '../../store/maps';
 import Maps from './Maps';
 

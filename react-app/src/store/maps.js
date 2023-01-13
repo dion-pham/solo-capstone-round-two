@@ -1,4 +1,3 @@
-
 const LOAD_API_KEY = 'maps/LOAD_API_KEY';
 
 const loadApiKey = (key) => ({
