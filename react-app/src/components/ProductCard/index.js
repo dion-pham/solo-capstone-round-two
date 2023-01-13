@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { fetchAllProducts } from "../../store/product";
 import AddToCartForm from "../ProductAddToCartForm";
+import ReviewForm from "../ReviewForm";
 import './ProductCard.css'
 
 const ProductCard = () => {
@@ -29,6 +30,9 @@ const ProductCard = () => {
                 </div>
                 <div className="product-card-left-description">
                     {targetProduct?.description}
+                </div>
+                <div>
+                    <ReviewForm/>
                 </div>
             </div>
             <div className="product-card-middle">

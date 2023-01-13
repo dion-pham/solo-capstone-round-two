@@ -7,7 +7,7 @@ from flask_login import current_user, login_required
 
 review_routes = Blueprint('reviews', __name__)
 
-@review_routes.route('/<int:>', methods=['PUT'])
+@review_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def update_review(id):
     editted_review = Review.query.get_or_404(id)

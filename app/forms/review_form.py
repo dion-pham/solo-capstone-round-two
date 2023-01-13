@@ -7,7 +7,7 @@ class ReviewForm(FlaskForm):
 
     user_id = IntegerField('user_id', validators=[
         DataRequired()])
-    product_id = StringField('product_id', validators=[
+    product_id = IntegerField('product_id', validators=[
         DataRequired()])
     message = StringField('message', validators=[
         DataRequired(message='Message is required')])

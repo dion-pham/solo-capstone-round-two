@@ -25,11 +25,9 @@ def fetch_product_by_id(id):
     return ind_product.to_dict()
 
 # get all reviews from a product
-
-
-@product_routes.route('/<int:id>/reviews', methods=['GET'])
-def fetch_product_reviews(ProductId):
-    all_reviews = Review.query.filter(Review.product_id == ProductId)
+@product_routes.route('/<int:productId>/reviews', methods=['GET'])
+def fetch_product_reviews(productId):
+    all_reviews = Review.query.filter(Review.product_id == productId)
     parsed_review_dict = {}
     for review in all_reviews:
         parsed_review_dict[review.id] = review.to_dict()
@@ -39,7 +37,7 @@ def fetch_product_reviews(ProductId):
 # create a review for a product
 @product_routes.route('/<int:id>/reviews', methods=['POST'])
 @login_required
-def create_product_review():
+def create_product_review(id):
     # create a review form
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
