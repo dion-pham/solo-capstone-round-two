@@ -13,6 +13,23 @@ const removeUser = () => ({
 
 const initialState = { user: null };
 
+export const fetchUser = () => async (dispatch) => {
+  const response = await fetch('/api/auth/user', {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+  if (response.ok) {
+    const data = await response.json();
+    if (data.errors) {
+      return;
+    }
+
+    dispatch(setUser(data));
+  }
+}
+
+
 export const authenticate = () => async (dispatch) => {
   const response = await fetch('/api/auth/', {
     headers: {
@@ -80,16 +97,17 @@ export const signUp = (first_name, last_name, email, password) => async (dispatc
       first_name,
       last_name,
       email,
-      password,
+      password
     }),
   });
 
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))
-    return null;
+    return data
   } else if (response.status < 500) {
     const data = await response.json();
+    console.log(data.errors, 'this is error data')
     if (data.errors) {
       return data.errors;
     }

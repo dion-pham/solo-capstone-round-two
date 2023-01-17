@@ -5,7 +5,7 @@ from app.models.purchase import Purchase
 from app.models.purchase_product import PurchaseProduct
 from flask_login import current_user, login_required
 
-purchase_routes = Blueprint('purchase', __name__)
+purchase_routes = Blueprint('purchases', __name__)
 
 # fetch a user's purchases by user id
 @purchase_routes.route('/user/<int:id>', methods = ['GET'])

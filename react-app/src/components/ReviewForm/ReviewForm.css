@@ -1,0 +1,25 @@
+.review-form {
+    width: 100%;
+}
+
+#review-button {
+    background-color: black;
+    color: white;
+    margin-top: 10px;
+    min-height: 30px;
+    /* max-width: 300px; */
+    width: 152px;
+    min-width: auto;
+    cursor: pointer;
+}
+
+#delete-review-button{
+    background-color: black;
+    color: white;
+    margin-top: 5px;
+    min-height: 30px;
+    /* max-width: 300px; */
+    width: 152px;
+    min-width: auto;
+    cursor: pointer;
+}

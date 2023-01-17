@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { fetchAllProducts } from "../../store/product";
 import AddToCartForm from "../ProductAddToCartForm";
+import ReviewForm from "../ReviewForm";
+import ReviewSplash from "../ReviewSplash";
 import './ProductCard.css'
 
 const ProductCard = () => {
@@ -30,6 +32,15 @@ const ProductCard = () => {
                 <div className="product-card-left-description">
                     {targetProduct?.description}
                 </div>
+                <div>
+                    <h1 id='reviews-title'>Reviews</h1>
+                    <div>
+                        <ReviewSplash />
+                    </div>
+                    <div>
+                        <ReviewForm />
+                    </div>
+                </div>
             </div>
             <div className="product-card-middle">
                 <div className="img-wrapper">
@@ -41,13 +52,14 @@ const ProductCard = () => {
                 <div className="img-wrapper" id='img-wrapper-last'>
                     <img src={targetProduct?.img_url3} alt="Product's image" className='product-card-image'></img>
                 </div>
+
             </div>
             <div className="product-card-right">
                 <div className="product-card-right-shopping-text">
                     <h4 className="payment-h4">
-                    Pay in 4 interest-free installments for orders over $50.00 with
+                        Pay in 4 interest-free installments for orders over $50.00 with
                     </h4>
-                <img src={"https://i.imgur.com/ywv04QJ.png"} alt='shoppay' className="shop-pay-image"></img>
+                    <img src={"https://i.imgur.com/ywv04QJ.png"} alt='shoppay' className="shop-pay-image"></img>
                 </div>
                 <AddToCartForm targetProduct={targetProduct} />
             </div>

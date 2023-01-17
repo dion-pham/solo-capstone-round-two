@@ -4,8 +4,12 @@ import { Link, Redirect } from "react-router-dom";
 import { fetchAllProducts } from "../../store/product";
 import { fetchAllUserPurchases } from "../../store/purchase";
 import PurchaseHistoryEditForm from "../PurchaseHistoryEditModal/PurchaseHistoryEditForm";
+import MapContainer from "../Maps";
 import './PurchaseHistory.css'
 import '../Cart/Cart.css'
+import { fetchUser } from "../../store/session";
+import { thunkLoadAddress } from "../../store/address";
+import Maps from "../Maps/Maps";
 
 const PurchaseHistory = () => {
     const dispatch = useDispatch()
@@ -13,6 +17,7 @@ const PurchaseHistory = () => {
     const sessionUserId = useSelector(state => state.session.user.id)
 
     useEffect(() => {
+        dispatch(thunkLoadAddress(sessionUserId))
         dispatch(fetchAllProducts())
         dispatch(fetchAllUserPurchases(sessionUserId))
     }, [])
@@ -131,6 +136,10 @@ const PurchaseHistory = () => {
             <h1 className="cart-title">Order History</h1>
             <div className="cart-render">
                 {accountOrderHistory}
+            </div>
+            <div>
+                <MapContainer/>
+                {/* change back to maps container once you fix the api */}
             </div>
         </div>
     )

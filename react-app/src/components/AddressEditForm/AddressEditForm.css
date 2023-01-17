@@ -1,0 +1,14 @@
+.edit-shipping-container {
+    margin-top: 20px;
+}
+
+#edit-shipping-button {
+    background-color: black;
+    color: white;
+    margin-top: 1rem;
+    min-height: 30px;
+    /* max-width: 300px; */
+    width: 100%;
+    min-width: auto;
+    cursor: pointer;
+}

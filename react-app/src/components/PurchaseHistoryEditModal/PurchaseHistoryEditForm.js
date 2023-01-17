@@ -81,7 +81,7 @@ const PurchaseHistoryEditForm = ({ order }) => {
                             value={shipping}
                             onChange={(e) => setShipping(e.target.value)} />
                         <button className='change-shipping-button'>
-                            Change Shipping
+                            Edit Shipping Info
                         </button>
                     </div>
                 </form>

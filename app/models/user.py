@@ -17,6 +17,7 @@ class User(db.Model, UserMixin):
 
     address = db.relationship('Address', back_populates='user', cascade='all, delete' )
     purchase_users = db.relationship('Purchase', back_populates='user_purchases', cascade='all,delete')
+    reviews = db.relationship('Review', back_populates='user', lazy=False, cascade='all,delete')
 
     @property
     def password(self):
@@ -30,9 +31,13 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
     def to_dict(self):
+        data = {'address': ''}
+        if len(self.address):
+            data['address'] = self.address[0].to_dict()
         return {
             'id': self.id,
             'first_name': self.first_name,
             'last_name': self.last_name,
-            'email': self.email
+            'email': self.email,
+            'address': data
         }
