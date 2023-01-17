@@ -18,7 +18,7 @@ const containerStyle = {
 const getLatLng = async (address, key) => {
     const apiKey = key;
     const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`;
-    console.log(url, 'url')
+
 
     return fetch(url)
         .then(response => response.json())
