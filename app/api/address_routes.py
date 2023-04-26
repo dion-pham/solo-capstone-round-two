@@ -50,6 +50,7 @@ def update_address(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
+        editted_address.user_id = data['user_id']
         editted_address.address1 = data['address1']
         editted_address.city = data['city']
         editted_address.state = data['state']

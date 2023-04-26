@@ -112,16 +112,18 @@ const SignUpForm = () => {
       resetErrors()
       const data = await dispatch(signUp(firstName, lastName, email, password));
       if (Array.isArray(data)) {
+        console.log('this is error data')
         setErrors(data)
       } else if (data) {
-        dispatch(thunkAddAddress(data.id,
+        const addressMade = await dispatch(thunkAddAddress(data.id,
           address1,
           city,
           state,
           country,
           zip_code,
           ))
-          return null
+          console.log(addressMade, 'address made')
+          return addressMade
         // signUpAddress(data.id,
         //   address1,
         //   address2,

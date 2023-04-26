@@ -5,8 +5,8 @@ from wtforms.validators import DataRequired, Email, ValidationError, Length
 
 class AddressForm(FlaskForm):
 
-    # user_id = IntegerField('user_id', validators=[
-    #     DataRequired()])
+    user_id = IntegerField('user_id', validators=[
+        DataRequired()])
     address1 = StringField('address1', validators=[
         DataRequired(message='Address is required')])
     city = StringField('city', validators=[

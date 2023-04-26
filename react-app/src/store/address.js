@@ -68,14 +68,14 @@ export const thunkAddAddress = (user_id, address1, city, state, country, zip_cod
 }
 
 // add an edit thunk!!!
-export const thunkEditAddress = (addressId, address1, city, state, country, zip_code) => async (dispatch) => {
+export const thunkEditAddress = (addressId, user_id, address1, city, state, country, zip_code) => async (dispatch) => {
     const response = await fetch(`/api/address/${addressId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            // user_id,
+            user_id,
             address1,
             city,
             state,
