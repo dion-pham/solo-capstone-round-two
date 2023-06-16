@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template, request, session, redirect
 from flask_cors import CORS
+# from flask.ext.cors import cross_origin
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
@@ -43,7 +44,9 @@ db.init_app(app)
 Migrate(app, db)
 
 # Application Security
-CORS(app)
+# CORS(app)
+CORS(app, origins="http://localhost:3000", supports_credentials=True, methods=['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'])
+# CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
 
 
 # Since we are deploying with Docker and Flask,
@@ -71,6 +74,10 @@ def inject_csrf_token(response):
         httponly=True)
     return response
 
+def after_request(response):
+    response.access_control_allow_origin = "*"
+    return response
+
 
 @app.route("/api/docs")
 def api_help():
@@ -86,6 +93,7 @@ def api_help():
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
+# @cross_origin()
 def react_root(path):
     """
     This route will direct to the public directory in our
